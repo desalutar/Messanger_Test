@@ -84,9 +84,9 @@
 		23A1B2D12AF3F8E30072141A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				23A1B2D82AF3F9900072141A /* StartScreenController.swift */,
 				23A1B2DA2AF3F9EE0072141A /* AuthorizationViewController.swift */,
 				23A1B2DC2AF3FA020072141A /* RegistrationViewController.swift */,
+				23A1B2D82AF3F9900072141A /* StartScreenController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

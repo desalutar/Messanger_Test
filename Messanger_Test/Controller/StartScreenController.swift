@@ -20,3 +20,15 @@ final class StartScreenController: UIViewController {
     
 }
 
+extension StartScreenController: ViewItemsDelegate {
+    func switchToRegistrationController() {
+        let registrationVC = RegistrationViewController()
+        navigationController?.pushViewController(registrationVC, animated: true)
+    }
+    
+    func switchToAuthorizationController() {
+        let authorizationVC = AuthorizationViewController()
+        present(authorizationVC, animated: true)
+    }
+}
+

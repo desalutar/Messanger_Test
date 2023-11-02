@@ -18,17 +18,8 @@ final class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = viewItems
-        viewItems.delegate = self
         viewItems.configure()
     }
     
     
 }
-extension RegistrationViewController: ViewItemsDelegate {
-    func switchController() {
-        print("qwe")
-    }
-    
-    
-}
-
