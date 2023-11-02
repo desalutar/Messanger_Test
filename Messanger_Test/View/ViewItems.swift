@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ViewItemsDelegate: AnyObject {
-    func switchController()
+    func switchToRegistrationController()
+    func switchToAuthorizationController()
 }
 
 final class ViewItems : UIView {
@@ -94,7 +95,7 @@ final class ViewItems : UIView {
     }()
     
     @objc func registrationHandler() {
-        delegate?.switchController()
+        delegate?.switchToRegistrationController()
         print("registration")
     }
     
@@ -109,7 +110,7 @@ final class ViewItems : UIView {
     }()
     
     @objc func signInHandler() {
-        
+        delegate?.switchToAuthorizationController()
     }
     
     private lazy var loginTextField : UITextField = {
