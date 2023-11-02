@@ -1,0 +1,14 @@
+/*
+  Localizable.strings
+  Messenger
+
+  Created by Ишхан Багратуни on 02.11.23.
+  
+*/
+"Enter_Login" = "Введи логин";
+"Enter_Password" = "Введи пароль";
+"Enter" = "Войти";
+"Enter_Name" = "Введи имя";
+"Save" = "Сохранить";
+"Registration" = "Регистрация";
+"Sign_In" = "Войти";
