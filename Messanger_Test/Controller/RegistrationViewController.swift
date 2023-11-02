@@ -26,7 +26,7 @@ final class RegistrationViewController: UIViewController {
 }
 extension RegistrationViewController: ViewItemsDelegate {
     func switchController() {
-        
+        print("qwe")
     }
     
     

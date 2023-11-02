@@ -20,12 +20,3 @@ final class StartScreenController: UIViewController {
     
 }
 
-extension StartScreenController : ViewItemsDelegate {
-    func switchController() {
-//        print("qwe")
-        
-    }
-    
-    
-}
-
