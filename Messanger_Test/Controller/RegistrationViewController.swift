@@ -7,8 +7,9 @@
 
 import UIKit
 
-final class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController, Storyboardable {
     
+    weak var coordinator: AppCoordinator?
     private let viewItems = ViewItems(viewType: .registrationScreen)
     
     override func loadView() {

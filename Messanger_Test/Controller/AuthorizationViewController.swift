@@ -7,9 +7,11 @@
 
 import UIKit
 
-final class AuthorizationViewController: UIViewController {
-
+final class AuthorizationViewController: UIViewController, Storyboardable {
+    
+    weak var coordinator: AppCoordinator?
     private let viewItems = ViewItems(viewType: .authorizationScreen)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view = viewItems

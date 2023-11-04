@@ -7,8 +7,9 @@
 
 import UIKit
     
-final class StartScreenController: UIViewController {
+final class StartScreenController: UIViewController, Storyboardable {
     
+    weak var coordinator: AppCoordinator?
     private var viewItems = ViewItems(viewType: .startScreen)
     
     override func viewDidLoad() {
@@ -22,13 +23,12 @@ final class StartScreenController: UIViewController {
 
 extension StartScreenController: ViewItemsDelegate {
     func switchToRegistrationController() {
-        let registrationVC = RegistrationViewController()
-        navigationController?.pushViewController(registrationVC, animated: true)
+        coordinator?.openRegistrationVC()
+        
     }
     
     func switchToAuthorizationController() {
-        let authorizationVC = AuthorizationViewController()
-        present(authorizationVC, animated: true)
+        coordinator?.openAuthorizationVC()
     }
 }
 
