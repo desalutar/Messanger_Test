@@ -21,6 +21,7 @@
 		23A1B3442AF68BD60072141A /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3432AF68BD60072141A /* CoordinatorProtocol.swift */; };
 		23A1B3502AF7883D0072141A /* AuthorizationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B34F2AF7883D0072141A /* AuthorizationViews.swift */; };
 		23A1B3522AF7884A0072141A /* RegistrationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3512AF7884A0072141A /* RegistrationViews.swift */; };
+		23A1B3542AF7DDC00072141A /* Extension+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3532AF7DDC00072141A /* Extension+Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		23A1B3432AF68BD60072141A /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		23A1B34F2AF7883D0072141A /* AuthorizationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViews.swift; sourceTree = "<group>"; };
 		23A1B3512AF7884A0072141A /* RegistrationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViews.swift; sourceTree = "<group>"; };
+		23A1B3532AF7DDC00072141A /* Extension+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Strings.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				23A1B2D22AF3F8ED0072141A /* View */,
 				23A1B2D12AF3F8E30072141A /* Controller */,
 				23A1B2BD2AF3F8A90072141A /* AppDelegate.swift */,
+				23A1B3532AF7DDC00072141A /* Extension+Strings.swift */,
 				23A1B2C62AF3F8AA0072141A /* Assets.xcassets */,
 				23A1B2C82AF3F8AA0072141A /* LaunchScreen.storyboard */,
 				23A1B2CB2AF3F8AA0072141A /* Info.plist */,
@@ -221,6 +224,7 @@
 				23A1B2D92AF3F9900072141A /* StartScreenController.swift in Sources */,
 				23A1B3502AF7883D0072141A /* AuthorizationViews.swift in Sources */,
 				23A1B3412AF68BA60072141A /* AppCoordinator.swift in Sources */,
+				23A1B3542AF7DDC00072141A /* Extension+Strings.swift in Sources */,
 				23A1B3522AF7884A0072141A /* RegistrationViews.swift in Sources */,
 				23A1B2D52AF3F9350072141A /* Model.swift in Sources */,
 				23A1B2D72AF3F9410072141A /* StartViews.swift in Sources */,

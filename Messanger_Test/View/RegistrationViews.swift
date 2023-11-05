@@ -62,8 +62,15 @@ final class RegistrationViews: UIView {
         saveButton.setTitle(SaveButtonConstant.saveButtonTitle, for: .normal)
         saveButton.layer.cornerRadius = appearance.cornerRadius
         saveButton.backgroundColor = ColorsConstants.saveButtonColor
+        saveButton.addTarget(self, action: #selector(saveButtonHandler), for: .touchUpInside)
         return saveButton
     }()
+    
+    @objc func saveButtonHandler() {
+        let item: Model
+        item = Model(name: userName.text ?? .empty, login: loginTextField.text ?? .empty, password: passwordTextField.text ?? .empty, photo: userImage.image)
+        print(item)
+    }
     
     private lazy var loginTextField : UITextField = {
         let loginTextField = UITextField()
@@ -93,9 +100,9 @@ final class RegistrationViews: UIView {
     // MARK: - NSLayoutConstraint
     
     enum UserImageLayoutConstant {
-        static let userImageHeight: CGFloat = 100.0
-        static let userImageWidth: CGFloat = 100.0
-        static let userImageTop: CGFloat = 50.0
+        static let userImageHeight: CGFloat = 150.0
+        static let userImageWidth: CGFloat = 150.0
+        static let userImageTop: CGFloat = 100.0
     }
     private func layoutUserImage() {
         NSLayoutConstraint.activate([
@@ -162,7 +169,7 @@ final class RegistrationViews: UIView {
 
 extension RegistrationViews {
     struct Appearance {
-        let userImageCornerRadius = 50.0
+        let userImageCornerRadius = 10.0
         let borderWidth = 0.5
         let cornerRadius = 5.0
         let userNamePlaceholder : String = "Enter_Name".localized

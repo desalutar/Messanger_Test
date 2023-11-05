@@ -81,7 +81,6 @@ class StartScreenViews : UIView {
         static let authorizationHeightAnchor = 40.0
         static let authorizationBottomAnchor = -90.0
     }
-    
     private func layoutAuthorizationScreenButton() {
         NSLayoutConstraint.activate([
             registrationScreenButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: AuthorizationLayoutConstant.authorizationLeadingAnchor),
