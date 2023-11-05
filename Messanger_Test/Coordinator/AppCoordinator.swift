@@ -16,19 +16,19 @@ class AppCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        let vc = StartScreenController.createObject()
+        let vc = StartScreenController()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
     func openRegistrationVC() {
-        let registrationVC = RegistrationViewController.createObject()
+        let registrationVC = RegistrationViewController()
         registrationVC.coordinator = self
         navigationController.pushViewController(registrationVC, animated: true)
     }
     
     func openAuthorizationVC() {
-        let authorizationVC = AuthorizationViewController.createObject()
+        let authorizationVC = AuthorizationViewController()
         authorizationVC.coordinator = self
         navigationController.pushViewController(authorizationVC, animated: true)
     }

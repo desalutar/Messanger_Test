@@ -7,19 +7,17 @@
 
 import UIKit
 
-final class RegistrationViewController: UIViewController, Storyboardable {
+final class RegistrationViewController: UIViewController {
     
     weak var coordinator: AppCoordinator?
-    private let viewItems = ViewItems(viewType: .registrationScreen)
+    private let registrationViews = RegistrationViews()
     
     override func loadView() {
-
+        view = registrationViews
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = viewItems
-        viewItems.configure()
     }
     
     

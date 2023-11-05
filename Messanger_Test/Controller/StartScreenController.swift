@@ -7,24 +7,22 @@
 
 import UIKit
     
-final class StartScreenController: UIViewController, Storyboardable {
+final class StartScreenController: UIViewController {
     
     weak var coordinator: AppCoordinator?
-    private var viewItems = ViewItems(viewType: .startScreen)
+    private let startScreen = StartScreenViews()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = viewItems
-        viewItems.configure()
-        viewItems.delegate = self
+        view = startScreen
+        startScreen.delegate = self
     }
     
 }
 
-extension StartScreenController: ViewItemsDelegate {
+extension StartScreenController: StartScreenDelegate {
     func switchToRegistrationController() {
         coordinator?.openRegistrationVC()
-        
     }
     
     func switchToAuthorizationController() {
