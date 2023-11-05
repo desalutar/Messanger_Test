@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol RegistrationDelegate: AnyObject {
+    func saveUser(with item: Model)
+}
+
 final class RegistrationViews: UIView {
 
     private let item: Model?
     private let appearance = Appearance()
+    weak var delegate: RegistrationDelegate?
     
     init(item: Model? = nil) {
         self.item = item
@@ -59,7 +64,7 @@ final class RegistrationViews: UIView {
     private lazy var saveButton : UIButton = {
         let saveButton = UIButton()
         saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.setTitle(SaveButtonConstant.saveButtonTitle, for: .normal)
+        saveButton.setTitle(appearance.saveButtonTitle, for: .normal)
         saveButton.layer.cornerRadius = appearance.cornerRadius
         saveButton.backgroundColor = ColorsConstants.saveButtonColor
         saveButton.addTarget(self, action: #selector(saveButtonHandler), for: .touchUpInside)
@@ -69,6 +74,7 @@ final class RegistrationViews: UIView {
     @objc func saveButtonHandler() {
         let item: Model
         item = Model(name: userName.text ?? .empty, login: loginTextField.text ?? .empty, password: passwordTextField.text ?? .empty, photo: userImage.image)
+        delegate?.saveUser(with: item)
         print(item)
     }
     
@@ -153,13 +159,15 @@ final class RegistrationViews: UIView {
         ])
     }
     
-    enum SaveButtonLayoutConstant {
+    enum SaveButtonConstant {
         static let saveButtonTop: CGFloat = 10
+        
+        static let saveButtonLeading = 100.0
     }
     private func layoutSaveButton() {
         NSLayoutConstraint.activate([
             saveButton.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
-            saveButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: SaveButtonLayoutConstant.saveButtonTop),
+            saveButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: SaveButtonConstant.saveButtonTop),
             saveButton.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                 constant: SaveButtonConstant.saveButtonLeading)
         ])
@@ -173,12 +181,9 @@ extension RegistrationViews {
         let borderWidth = 0.5
         let cornerRadius = 5.0
         let userNamePlaceholder : String = "Enter_Name".localized
+        let saveButtonTitle : String = "Save".localized
     }
     
-    enum SaveButtonConstant {
-        static let saveButtonTitle : String = "Save".localized
-        static let saveButtonLeading = 100.0
-    }
     
     enum TextFieldConstant {
         static let loginPlaceholder : String = "Enter_Login".localized
