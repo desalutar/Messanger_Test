@@ -30,7 +30,7 @@ class StartScreenViews : UIView {
     
     
     private func startScreen() {
-        backgroundColor = appearance.startScreenBackgroundColor
+        backgroundColor = ColorsConstants.startScreenBackgroundColor
         addSubview(registrationScreenButton)
         addSubview(authorizationScreenButton)
         layoutAuthorizationScreenButton()
@@ -44,9 +44,9 @@ class StartScreenViews : UIView {
     private lazy var registrationScreenButton : UIButton = {
         let registrationButton = UIButton()
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
-        registrationButton.setTitle(appearance.authorizationScreenButtonTitle, for: .normal)
+        registrationButton.setTitle(LocalizedStringsConstant.authorizationScreenButtonTitle, for: .normal)
         registrationButton.layer.cornerRadius = appearance.cornerRadius
-        registrationButton.backgroundColor = appearance.authorizationBackgroundColor
+        registrationButton.backgroundColor = ColorsConstants.authorizationBackgroundColor
         registrationButton.addTarget(self, action: #selector(registrationHandler),
                                      for: .touchUpInside)
         return registrationButton
@@ -60,8 +60,8 @@ class StartScreenViews : UIView {
     private lazy var authorizationScreenButton : UIButton = {
         let signInButton = UIButton()
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.setTitle(appearance.registrationScreenButtonTitle, for: .normal)
-        signInButton.backgroundColor = appearance.registrationBackgroundColor
+        signInButton.setTitle(LocalizedStringsConstant.registrationScreenButtonTitle, for: .normal)
+        signInButton.backgroundColor = ColorsConstants.registrationBackgroundColor
         signInButton.layer.cornerRadius = appearance.cornerRadius
         signInButton.addTarget(self, action: #selector(signInHandler), for: .touchUpInside)
         return signInButton
@@ -75,62 +75,61 @@ class StartScreenViews : UIView {
     
     // MARK: - NSLayoutConstraint
     
+    enum AuthorizationLayoutConstant {
+        static let authorizationLeadingAnchor = 60.0
+        static let authorizationTrailingAnchor = -60.0
+        static let authorizationHeightAnchor = 40.0
+        static let authorizationBottomAnchor = -90.0
+    }
+    
     private func layoutAuthorizationScreenButton() {
         NSLayoutConstraint.activate([
-            registrationScreenButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: appearance.authorizationLeadingAnchor),
+            registrationScreenButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: AuthorizationLayoutConstant.authorizationLeadingAnchor),
             
-            registrationScreenButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: appearance.authorizationTrailingAnchor),
+            registrationScreenButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: AuthorizationLayoutConstant.authorizationTrailingAnchor),
             
-            registrationScreenButton.heightAnchor.constraint(equalToConstant: appearance.authorizationHeightAnchor),
+            registrationScreenButton.heightAnchor.constraint(equalToConstant: AuthorizationLayoutConstant.authorizationHeightAnchor),
             
-            registrationScreenButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: appearance.authorizationBottomAnchor)
+            registrationScreenButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: AuthorizationLayoutConstant.authorizationBottomAnchor)
         ])
     }
     
+    enum RegistrationLayoutConstant {
+        static let registrationWidthAnchor = 70.0
+        static let registrationBottomAnchor = 10.0
+    }
     private func layoutRegistrationScreenButton() {
         NSLayoutConstraint.activate([
             authorizationScreenButton.centerXAnchor.constraint(equalTo: registrationScreenButton.centerXAnchor),
             
-            authorizationScreenButton.widthAnchor.constraint(equalToConstant: appearance.registrationWidthAnchor),
+            authorizationScreenButton.widthAnchor.constraint(equalToConstant: RegistrationLayoutConstant.registrationWidthAnchor),
             
             authorizationScreenButton.topAnchor.constraint(
                 equalTo: registrationScreenButton.bottomAnchor,
-                constant: appearance.registrationBottomAnchor)
+                constant: RegistrationLayoutConstant.registrationBottomAnchor)
         ])
     }
 }
 
 private extension StartScreenViews {
     struct Appearance {
-        let startScreenBackgroundColor = UIColor(red: 45/255, green: 47/255, blue: 57/255, alpha: 1)
-        
-        let authorizationScreenButtonTitle: String = "Registration".localized
-        let registrationScreenButtonTitle: String = "Sign_In".localized
-        
-        let authorizationLeadingAnchor = 60.0
-        let authorizationTrailingAnchor = -60.0
-        let authorizationHeightAnchor = 40.0
-        let authorizationBottomAnchor = -90.0
-        
-        let registrationWidthAnchor = 70.0
-        let registrationBottomAnchor = 10.0
-        
         let cornerRadius = 5.0
         let borderWidth = 0.5
 
-        let authorizationBackgroundColor = UIColor(red: 110/255, green: 164/255, blue: 189/255, alpha: 0.5)
-        
-        let textFieldLayerBorderColor: UIColor = .systemGray2
-        let colorWhite: UIColor = .white
-        let colorRed: UIColor = .red
         let userImageCornerRadius = 50.0
         let saveButtonLeading = 100.0
-        let loginPlaceholder : String = "Enter_Login".localized
-        let passwordPlaceHolder : String = "Enter_Password".localized
-        let singInButtonTitle : String = "Enter".localized
-        let userNamePlaceholder : String = "Enter_Name".localized
-        let saveButtonTitle : String = "Save".localized
-        
-        let registrationBackgroundColor = UIColor(red: 110/255, green: 164/255, blue: 189/255, alpha: 0)
+    }
+    
+    enum LocalizedStringsConstant {
+        static let authorizationScreenButtonTitle: String = "Registration".localized
+        static let registrationScreenButtonTitle: String = "Sign_In".localized
+    }
+    enum ColorsConstants {
+        static let authorizationBackgroundColor = UIColor(red: 110/255, green: 164/255, blue: 189/255, alpha: 0.5)
+        static let registrationBackgroundColor = UIColor(red: 110/255, green: 164/255, blue: 189/255, alpha: 0)
+        static let startScreenBackgroundColor = UIColor(red: 45/255, green: 47/255, blue: 57/255, alpha: 1)
+        static let textFieldLayerBorderColor: UIColor = .systemGray2
+        static let colorWhite: UIColor = .white
+        static let colorRed: UIColor = .red
     }
 }

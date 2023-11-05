@@ -23,7 +23,7 @@ final class RegistrationViews: UIView {
     }
     
     private func registrationScreen() {
-        backgroundColor = colorsConstants.backgroundView
+        backgroundColor = ColorsConstants.backgroundView
         addSubview(userImage)
         addSubview(userName)
         addSubview(loginTextField)
@@ -41,16 +41,16 @@ final class RegistrationViews: UIView {
         let userImage = UIImageView()
         userImage.translatesAutoresizingMaskIntoConstraints = false
         userImage.layer.cornerRadius = appearance.userImageCornerRadius
-        userImage.backgroundColor = colorsConstants.colorRed
+        userImage.backgroundColor = ColorsConstants.colorRed
         userImage.contentMode = .scaleAspectFit
         return userImage
     }()
     private lazy var userName : UITextField = {
         let userName = UITextField()
-        userName.backgroundColor = colorsConstants.colorWhite
+        userName.backgroundColor = ColorsConstants.colorWhite
         userName.translatesAutoresizingMaskIntoConstraints = false
         userName.placeholder = appearance.userNamePlaceholder
-        userName.layer.borderColor = colorsConstants.textFieldLayerBorderColor.cgColor
+        userName.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
         userName.layer.borderWidth = appearance.borderWidth
         userName.layer.cornerRadius = appearance.cornerRadius
         userName.textAlignment = .center
@@ -59,18 +59,18 @@ final class RegistrationViews: UIView {
     private lazy var saveButton : UIButton = {
         let saveButton = UIButton()
         saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.setTitle(saveButtonConstant.saveButtonTitle, for: .normal)
+        saveButton.setTitle(SaveButtonConstant.saveButtonTitle, for: .normal)
         saveButton.layer.cornerRadius = appearance.cornerRadius
-        saveButton.backgroundColor = colorsConstants.authorizationBackgroundColor
+        saveButton.backgroundColor = ColorsConstants.saveButtonColor
         return saveButton
     }()
     
     private lazy var loginTextField : UITextField = {
         let loginTextField = UITextField()
-        loginTextField.backgroundColor = colorsConstants.colorWhite
+        loginTextField.backgroundColor = ColorsConstants.colorWhite
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.placeholder = textFieldConstant.loginPlaceholder
-        loginTextField.layer.borderColor = colorsConstants.textFieldLayerBorderColor.cgColor
+        loginTextField.placeholder = TextFieldConstant.loginPlaceholder
+        loginTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
         loginTextField.layer.borderWidth = appearance.borderWidth
         loginTextField.layer.cornerRadius = appearance.cornerRadius
         loginTextField.textAlignment = .center
@@ -79,10 +79,10 @@ final class RegistrationViews: UIView {
     
     private lazy var passwordTextField : UITextField = {
         let passwordTextField = UITextField()
-        passwordTextField.backgroundColor = colorsConstants.colorWhite
+        passwordTextField.backgroundColor = ColorsConstants.colorWhite
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.placeholder = textFieldConstant.passwordPlaceHolder
-        passwordTextField.layer.borderColor = colorsConstants.textFieldLayerBorderColor.cgColor
+        passwordTextField.placeholder = TextFieldConstant.passwordPlaceHolder
+        passwordTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
         passwordTextField.layer.borderWidth = appearance.borderWidth
         passwordTextField.layer.cornerRadius = appearance.cornerRadius
         passwordTextField.textAlignment = .center
@@ -90,6 +90,7 @@ final class RegistrationViews: UIView {
         return passwordTextField
     }()
     
+    // MARK: - NSLayoutConstraint
     
     enum UserImageLayoutConstant {
         static let userImageHeight: CGFloat = 100.0
@@ -153,7 +154,7 @@ final class RegistrationViews: UIView {
             saveButton.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
             saveButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: SaveButtonLayoutConstant.saveButtonTop),
             saveButton.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                constant: saveButtonConstant.saveButtonLeading)
+                                                constant: SaveButtonConstant.saveButtonLeading)
         ])
     }
 
@@ -167,19 +168,19 @@ extension RegistrationViews {
         let userNamePlaceholder : String = "Enter_Name".localized
     }
     
-    enum saveButtonConstant {
+    enum SaveButtonConstant {
         static let saveButtonTitle : String = "Save".localized
         static let saveButtonLeading = 100.0
     }
     
-    enum textFieldConstant {
+    enum TextFieldConstant {
         static let loginPlaceholder : String = "Enter_Login".localized
         static let passwordPlaceHolder : String = "Enter_Password".localized
     }
     
-    enum colorsConstants {
+    enum ColorsConstants {
         static let backgroundView = UIColor(red: 45/255, green: 47/255, blue: 57/255, alpha: 1)
-        static let authorizationBackgroundColor = UIColor(red: 110/255, green: 164/255, blue: 189/255, alpha: 0.5)
+        static let saveButtonColor = UIColor(red: 110/255, green: 164/255, blue: 189/255, alpha: 0)
         static let registrationBackgroundColor = UIColor(red: 110/255, green: 164/255, blue: 189/255, alpha: 0)
         static let textFieldLayerBorderColor: UIColor = .systemGray2
         static let colorRed: UIColor = .red

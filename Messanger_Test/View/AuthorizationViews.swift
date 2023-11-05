@@ -28,7 +28,7 @@ final class AuthorizationViews: UIView {
     }
     
     private func authorizationScreen() {
-        backgroundColor = appearance.backgroundView
+        backgroundColor = ColorsConstants.backgroundView
         addSubview(loginTextField)
         addSubview(passwordTextField)
         addSubview(signInButton)
@@ -40,10 +40,10 @@ final class AuthorizationViews: UIView {
     // MARK: - View Items
     private lazy var loginTextField : UITextField = {
         let loginTextField = UITextField()
-        loginTextField.backgroundColor = appearance.colorWhite
+        loginTextField.backgroundColor = ColorsConstants.colorWhite
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.placeholder = appearance.loginPlaceholder
-        loginTextField.layer.borderColor = appearance.textFieldLayerBorderColor.cgColor
+        loginTextField.placeholder = LocalizedStringsConstant.loginPlaceholder
+        loginTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
         loginTextField.layer.borderWidth = appearance.borderWidth
         loginTextField.layer.cornerRadius = appearance.cornerRadius
         loginTextField.textAlignment = .center
@@ -52,10 +52,10 @@ final class AuthorizationViews: UIView {
     
     private lazy var passwordTextField : UITextField = {
         let passwordTextField = UITextField()
-        passwordTextField.backgroundColor = appearance.colorWhite
+        passwordTextField.backgroundColor = ColorsConstants.colorWhite
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.placeholder = appearance.passwordPlaceHolder
-        passwordTextField.layer.borderColor = appearance.textFieldLayerBorderColor.cgColor
+        passwordTextField.placeholder = LocalizedStringsConstant.passwordPlaceHolder
+        passwordTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
         passwordTextField.layer.borderWidth = appearance.borderWidth
         passwordTextField.layer.cornerRadius = appearance.cornerRadius
         passwordTextField.textAlignment = .center
@@ -67,8 +67,8 @@ final class AuthorizationViews: UIView {
     private lazy var signInButton : UIButton = {
         let signInButton = UIButton()
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.setTitle(appearance.singInButtonTitle, for: .normal)
-        signInButton.backgroundColor = appearance.colorDarkGrey
+        signInButton.setTitle(LocalizedStringsConstant.singInButtonTitle, for: .normal)
+        signInButton.backgroundColor = ColorsConstants.signInButtonColor
         signInButton.layer.cornerRadius = appearance.cornerRadius
         signInButton.addTarget(self, action: #selector(signInButtonHandler), for: .touchUpInside)
         return signInButton
@@ -78,7 +78,7 @@ final class AuthorizationViews: UIView {
         print("Добавить метод для перехода в TableVIew")
     }
     
-    // MARK: - Layouts
+    // MARK: - NSLayoutConstraint
 
     enum LoginLayoutConstant {
         static let loginTextFieldLeading: CGFloat = 40.0
@@ -123,27 +123,26 @@ final class AuthorizationViews: UIView {
             signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: SignInLayoutConstant.signInTop)
         ])
     }
-    
 }
 
 extension AuthorizationViews {
     struct Appearance {
-        
-        let backgroundView = UIColor(red: 45/255, green: 47/255, blue: 57/255, alpha: 1)
-        let colorWhite: UIColor = .white
-        
-        let passwordPlaceHolder : String = "Enter_Password".localized
-        let singInButtonTitle : String = "Enter".localized
-        let loginPlaceholder : String = "Enter_Login".localized
-        
-        let textFieldLayerBorderColor: UIColor = .systemGray2
         let borderWidth = 0.5
         let cornerRadius = 5.0
-        
-        let registrationScreenButtonTitle: String = "Sign_In".localized
-        
-        let colorDarkGrey: UIColor = .darkGray
-        
+    }
+    
+    enum ColorsConstants {
+        static let backgroundView = UIColor(red: 45/255, green: 47/255, blue: 57/255, alpha: 1)
+        static let signInButtonColor = UIColor(red: 110/255, green: 164/255, blue: 189/255, alpha: 0)
+        static let colorWhite: UIColor = .white
+        static let textFieldLayerBorderColor: UIColor = .systemGray2
+    }
+    
+    enum LocalizedStringsConstant {
+        static let passwordPlaceHolder : String = "Enter_Password".localized
+        static let singInButtonTitle : String = "Enter".localized
+        static let loginPlaceholder : String = "Enter_Login".localized
+        static let registrationScreenButtonTitle: String = "Sign_In".localized
     }
 }
 
