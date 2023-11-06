@@ -31,8 +31,8 @@ final class RegistrationViews: UIView {
         backgroundColor = ColorsConstants.backgroundView
         addSubview(userImage)
         addSubview(userName)
-        addSubview(loginTextField)
-        addSubview(passwordTextField)
+        addSubview(loginField)
+        addSubview(passwordField)
         addSubview(saveButton)
         layoutUserImage()
         layoutUserName()
@@ -73,12 +73,12 @@ final class RegistrationViews: UIView {
     
     @objc func saveButtonHandler() {
         let item: Model
-        item = Model(name: userName.text ?? .empty, login: loginTextField.text ?? .empty, password: passwordTextField.text ?? .empty, photo: userImage.image)
+        item = Model(name: userName.text ?? .empty, login: loginField.text ?? .empty, password: passwordField.text ?? .empty, photo: userImage.image)
         delegate?.saveUser(with: item)
         print(item)
     }
     
-    private lazy var loginTextField : UITextField = {
+    private lazy var loginField : UITextField = {
         let loginTextField = UITextField()
         loginTextField.backgroundColor = ColorsConstants.colorWhite
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -90,7 +90,7 @@ final class RegistrationViews: UIView {
         return loginTextField
     }()
     
-    private lazy var passwordTextField : UITextField = {
+    private lazy var passwordField : UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.backgroundColor = ColorsConstants.colorWhite
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -139,10 +139,10 @@ final class RegistrationViews: UIView {
     }
     private func layoutUserLogin() {
         NSLayoutConstraint.activate([
-            loginTextField.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: UserLoginLayoutConstant.loginTextFieldTop),
-            loginTextField.centerXAnchor.constraint(equalTo: userName.centerXAnchor),
-            loginTextField.leadingAnchor.constraint(equalTo: userName.leadingAnchor),
-            loginTextField.heightAnchor.constraint(equalToConstant: UserLoginLayoutConstant.loginTextFieldHeight)
+            loginField.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: UserLoginLayoutConstant.loginTextFieldTop),
+            loginField.centerXAnchor.constraint(equalTo: userName.centerXAnchor),
+            loginField.leadingAnchor.constraint(equalTo: userName.leadingAnchor),
+            loginField.heightAnchor.constraint(equalToConstant: UserLoginLayoutConstant.loginTextFieldHeight)
         ])
     }
     
@@ -152,10 +152,10 @@ final class RegistrationViews: UIView {
     }
     private func layoutPassword() {
         NSLayoutConstraint.activate([
-            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: UserPasswordLayoutConstant.passwordTextFieldTop),
-            passwordTextField.centerXAnchor.constraint(equalTo: loginTextField.centerXAnchor),
-            passwordTextField.leadingAnchor.constraint(equalTo: loginTextField.leadingAnchor),
-            passwordTextField.heightAnchor.constraint(equalToConstant: UserPasswordLayoutConstant.passwordTextFieldHeight)
+            passwordField.topAnchor.constraint(equalTo: loginField.bottomAnchor, constant: UserPasswordLayoutConstant.passwordTextFieldTop),
+            passwordField.centerXAnchor.constraint(equalTo: loginField.centerXAnchor),
+            passwordField.leadingAnchor.constraint(equalTo: loginField.leadingAnchor),
+            passwordField.heightAnchor.constraint(equalToConstant: UserPasswordLayoutConstant.passwordTextFieldHeight)
         ])
     }
     
@@ -166,8 +166,8 @@ final class RegistrationViews: UIView {
     }
     private func layoutSaveButton() {
         NSLayoutConstraint.activate([
-            saveButton.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
-            saveButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: SaveButtonConstant.saveButtonTop),
+            saveButton.centerXAnchor.constraint(equalTo: passwordField.centerXAnchor),
+            saveButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: SaveButtonConstant.saveButtonTop),
             saveButton.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                 constant: SaveButtonConstant.saveButtonLeading)
         ])

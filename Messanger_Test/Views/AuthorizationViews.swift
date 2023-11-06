@@ -29,8 +29,8 @@ final class AuthorizationViews: UIView {
     
     private func authorizationScreen() {
         backgroundColor = ColorsConstants.backgroundView
-        addSubview(loginTextField)
-        addSubview(passwordTextField)
+        addSubview(loginField)
+        addSubview(passwordField)
         addSubview(signInButton)
         layoutLoginTextField()
         layoutPasswordTextField()
@@ -38,7 +38,7 @@ final class AuthorizationViews: UIView {
     }
 
     // MARK: - View Items
-    private lazy var loginTextField : UITextField = {
+    private lazy var loginField : UITextField = {
         let loginTextField = UITextField()
         loginTextField.backgroundColor = ColorsConstants.colorWhite
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class AuthorizationViews: UIView {
         return loginTextField
     }()
     
-    private lazy var passwordTextField : UITextField = {
+    private lazy var passwordField : UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.backgroundColor = ColorsConstants.colorWhite
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -88,10 +88,10 @@ final class AuthorizationViews: UIView {
     }
     private func layoutLoginTextField() {
         NSLayoutConstraint.activate([
-            loginTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: LoginLayoutConstant.loginTextFieldLeading),
-            loginTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: LoginLayoutConstant.loginTextFieldTrailing),
-            loginTextField.heightAnchor.constraint(equalToConstant: LoginLayoutConstant.loginTextFieldHeight),
-            loginTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: LoginLayoutConstant.loginTextFieldBottom)
+            loginField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: LoginLayoutConstant.loginTextFieldLeading),
+            loginField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: LoginLayoutConstant.loginTextFieldTrailing),
+            loginField.heightAnchor.constraint(equalToConstant: LoginLayoutConstant.loginTextFieldHeight),
+            loginField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: LoginLayoutConstant.loginTextFieldBottom)
         ])
     }
     
@@ -103,11 +103,11 @@ final class AuthorizationViews: UIView {
     }
     private func layoutPasswordTextField() {
         NSLayoutConstraint.activate([
-            passwordTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: PasswordLayoutConstant.passwordLeading),
-            passwordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: PasswordLayoutConstant.passwordTrailing),
-            passwordTextField.heightAnchor.constraint(equalToConstant: PasswordLayoutConstant.passwordHeight),
-            passwordTextField.centerXAnchor.constraint(equalTo: loginTextField.centerXAnchor),
-            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor,
+            passwordField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: PasswordLayoutConstant.passwordLeading),
+            passwordField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: PasswordLayoutConstant.passwordTrailing),
+            passwordField.heightAnchor.constraint(equalToConstant: PasswordLayoutConstant.passwordHeight),
+            passwordField.centerXAnchor.constraint(equalTo: loginField.centerXAnchor),
+            passwordField.topAnchor.constraint(equalTo: loginField.bottomAnchor,
                                                    constant: PasswordLayoutConstant.passwordTop)
         ])
     }
@@ -118,9 +118,9 @@ final class AuthorizationViews: UIView {
     }
     private func layoutSignInButton() {
         NSLayoutConstraint.activate([
-            signInButton.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
+            signInButton.centerXAnchor.constraint(equalTo: passwordField.centerXAnchor),
             signInButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: SignInLayoutConstant.signInLeading),
-            signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: SignInLayoutConstant.signInTop)
+            signInButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: SignInLayoutConstant.signInTop)
         ])
     }
 }
