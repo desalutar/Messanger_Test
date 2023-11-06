@@ -13,11 +13,11 @@ protocol AuthorizationViewsDelegate: AnyObject {
 
 final class AuthorizationViews: UIView {
     
-    private let item : Model?
+    private let item : UserModel?
     private let appearance = Appearance()
     weak var delegate: AuthorizationViewsDelegate?
     
-    init(item: Model? = nil) {
+    init(item: UserModel? = nil) {
         self.item = item
         super.init(frame: .zero)
         authorizationScreen()

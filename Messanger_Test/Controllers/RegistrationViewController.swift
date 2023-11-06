@@ -11,17 +11,23 @@ final class RegistrationViewController: UIViewController, RegistrationDelegate {
     
     weak var coordinator: AppCoordinator?
     private let registrationViews = RegistrationViews()
-    
-    override func loadView() {
-        view = registrationViews
-        registrationViews.delegate = self
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        view = registrationViews
+        registrationViews.delegate = self
+        hideKeyboard()
     }
     
-    func saveUser(with item: Model) {
+    fileprivate func hideKeyboard() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToClose))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func tapToClose() {
+        view.endEditing(true)
+    }
+    
+    func saveUser(with item: UserModel) {
         navigationController?.popToRootViewController(animated: true)
     }
 }

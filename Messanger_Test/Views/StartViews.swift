@@ -16,10 +16,10 @@ class StartScreenViews : UIView {
     
     weak var delegate: StartScreenDelegate?
     
-    private let item : Model?
+    private let item : UserModel?
     private let appearance = Appearance()
     
-    init(item: Model? = nil) {
+    init(item: UserModel? = nil) {
         self.item = item
         super.init(frame: .zero)
         startScreen()

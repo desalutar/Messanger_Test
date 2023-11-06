@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Model {
+struct UserModel {
     let name: String
     let login: String
     let password: String

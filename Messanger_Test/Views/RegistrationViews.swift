@@ -8,16 +8,16 @@
 import UIKit
 
 protocol RegistrationDelegate: AnyObject {
-    func saveUser(with item: Model)
+    func saveUser(with item: UserModel)
 }
 
 final class RegistrationViews: UIView {
 
-    private let item: Model?
+    private let item: UserModel?
     private let appearance = Appearance()
     weak var delegate: RegistrationDelegate?
     
-    init(item: Model? = nil) {
+    init(item: UserModel? = nil) {
         self.item = item
         super.init(frame: .zero)
         registrationScreen()
@@ -72,8 +72,8 @@ final class RegistrationViews: UIView {
     }()
     
     @objc func saveButtonHandler() {
-        let item: Model
-        item = Model(name: userName.text ?? .empty, login: loginField.text ?? .empty, password: passwordField.text ?? .empty, photo: userImage.image)
+        let item: UserModel
+        item = UserModel(name: userName.text ?? .empty, login: loginField.text ?? .empty, password: passwordField.text ?? .empty, photo: userImage.image)
         delegate?.saveUser(with: item)
         print(item)
     }
