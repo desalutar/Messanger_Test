@@ -18,11 +18,6 @@ final class AuthorizationViewController: UIViewController {
         hideKeyboard()
     }
     
-    
-    
-    
-    
-    
     fileprivate func hideKeyboard() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapToClose))
         view.addGestureRecognizer(tap)

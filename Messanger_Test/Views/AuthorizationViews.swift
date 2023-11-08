@@ -38,6 +38,8 @@ final class AuthorizationViews: UIView {
     }
 
     // MARK: - View Items
+    
+    
     private lazy var loginField : UITextField = {
         let loginTextField = UITextField()
         loginTextField.backgroundColor = ColorsConstants.colorWhite
@@ -80,6 +82,8 @@ final class AuthorizationViews: UIView {
     
     // MARK: - NSLayoutConstraint
 
+    
+    
     enum LoginLayoutConstant {
         static let loginTextFieldLeading: CGFloat = 40.0
         static let loginTextFieldTrailing: CGFloat = -40.0

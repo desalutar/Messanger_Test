@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RegistrationDelegate: AnyObject {
-    func saveUser(with item: UserModel)
+    func saveUserModel(with item: UserModel)
 }
 
 final class RegistrationViews: UIView {
@@ -20,36 +20,72 @@ final class RegistrationViews: UIView {
     init(item: UserModel? = nil) {
         self.item = item
         super.init(frame: .zero)
-        registrationScreen()
+        setViewItems()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func registrationScreen() {
+    private func setViewItems() {
         backgroundColor = ColorsConstants.backgroundView
-        addSubview(userImage)
-        addSubview(userName)
-        addSubview(loginField)
-        addSubview(passwordField)
-        addSubview(saveButton)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(mainStackView)
+        
+        layoutScrollView()
+        layoutContentView()
+        layoutMainStackView()
+        layoutBottomStackView()
         layoutUserImage()
-        layoutUserName()
         layoutUserLogin()
+        layoutUserName()
         layoutPassword()
-        layoutSaveButton()
     }
     
     // MARK: - View Items
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
+    
+    private let contentView : UIView = {
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    }()
+    
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [userImage, bottomStackView])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = MainStackLayoutConstant.spacing
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    private lazy var bottomStackView: UIStackView = {
+        let bottomStackView = UIStackView(arrangedSubviews: [loginField, userName, passwordField, saveButton])
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomStackView.axis = .vertical
+        bottomStackView.distribution = .fill
+        bottomStackView.spacing = appearance.spacing
+        return bottomStackView
+    }()
+
     private lazy var userImage : UIImageView = {
         let userImage = UIImageView()
         userImage.translatesAutoresizingMaskIntoConstraints = false
         userImage.layer.cornerRadius = appearance.userImageCornerRadius
         userImage.backgroundColor = ColorsConstants.colorRed
-        userImage.contentMode = .scaleAspectFit
+        userImage.contentMode = .scaleAspectFill
+        userImage.clipsToBounds = true
         return userImage
     }()
+    
     private lazy var userName : UITextField = {
         let userName = UITextField()
         userName.backgroundColor = ColorsConstants.colorWhite
@@ -61,22 +97,6 @@ final class RegistrationViews: UIView {
         userName.textAlignment = .center
         return userName
     }()
-    private lazy var saveButton : UIButton = {
-        let saveButton = UIButton()
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.setTitle(appearance.saveButtonTitle, for: .normal)
-        saveButton.layer.cornerRadius = appearance.cornerRadius
-        saveButton.backgroundColor = ColorsConstants.saveButtonColor
-        saveButton.addTarget(self, action: #selector(saveButtonHandler), for: .touchUpInside)
-        return saveButton
-    }()
-    
-    @objc func saveButtonHandler() {
-        let item: UserModel
-        item = UserModel(name: userName.text ?? .empty, login: loginField.text ?? .empty, password: passwordField.text ?? .empty, photo: userImage.image)
-        delegate?.saveUser(with: item)
-        print(item)
-    }
     
     private lazy var loginField : UITextField = {
         let loginTextField = UITextField()
@@ -103,76 +123,97 @@ final class RegistrationViews: UIView {
         return passwordTextField
     }()
     
-    // MARK: - NSLayoutConstraint
+    private lazy var saveButton : UIButton = {
+        let saveButton = UIButton()
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.setTitle(appearance.saveButtonTitle, for: .normal)
+        saveButton.layer.cornerRadius = appearance.cornerRadius
+        saveButton.backgroundColor = ColorsConstants.saveButtonColor
+        saveButton.addTarget(self, action: #selector(saveButtonHandler), for: .touchUpInside)
+        return saveButton
+    }()
     
-    enum UserImageLayoutConstant {
-        static let userImageHeight: CGFloat = 150.0
-        static let userImageWidth: CGFloat = 150.0
-        static let userImageTop: CGFloat = 100.0
-    }
-    private func layoutUserImage() {
-        NSLayoutConstraint.activate([
-            userImage.heightAnchor.constraint(equalToConstant: UserImageLayoutConstant.userImageHeight),
-            userImage.widthAnchor.constraint(equalToConstant: UserImageLayoutConstant.userImageWidth),
-            userImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            userImage.topAnchor.constraint(equalTo: topAnchor, constant: UserImageLayoutConstant.userImageTop)
-        ])
-    }
-    
-    enum UserNameLayoutConstant {
-        static let userNameTop: CGFloat = 120.0
-        static let userNameLeading: CGFloat = 50.0
-        static let userNameHeight: CGFloat = 30.0
-    }
-    private func layoutUserName() {
-        NSLayoutConstraint.activate([
-            userName.centerXAnchor.constraint(equalTo: userImage.centerXAnchor),
-            userName.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: UserNameLayoutConstant.userNameTop),
-            userName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UserNameLayoutConstant.userNameLeading),
-            userName.heightAnchor.constraint(equalToConstant: UserNameLayoutConstant.userNameHeight)
-        ])
-    }
-    
-    enum UserLoginLayoutConstant {
-        static let loginTextFieldTop: CGFloat = 20.0
-        static let loginTextFieldHeight: CGFloat = 30.0
-    }
-    private func layoutUserLogin() {
-        NSLayoutConstraint.activate([
-            loginField.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: UserLoginLayoutConstant.loginTextFieldTop),
-            loginField.centerXAnchor.constraint(equalTo: userName.centerXAnchor),
-            loginField.leadingAnchor.constraint(equalTo: userName.leadingAnchor),
-            loginField.heightAnchor.constraint(equalToConstant: UserLoginLayoutConstant.loginTextFieldHeight)
-        ])
-    }
-    
-    enum UserPasswordLayoutConstant {
-        static let passwordTextFieldTop: CGFloat = 20.0
-        static let passwordTextFieldHeight: CGFloat = 30.0
-    }
-    private func layoutPassword() {
-        NSLayoutConstraint.activate([
-            passwordField.topAnchor.constraint(equalTo: loginField.bottomAnchor, constant: UserPasswordLayoutConstant.passwordTextFieldTop),
-            passwordField.centerXAnchor.constraint(equalTo: loginField.centerXAnchor),
-            passwordField.leadingAnchor.constraint(equalTo: loginField.leadingAnchor),
-            passwordField.heightAnchor.constraint(equalToConstant: UserPasswordLayoutConstant.passwordTextFieldHeight)
-        ])
-    }
-    
-    enum SaveButtonConstant {
-        static let saveButtonTop: CGFloat = 10
-        
-        static let saveButtonLeading = 100.0
-    }
-    private func layoutSaveButton() {
-        NSLayoutConstraint.activate([
-            saveButton.centerXAnchor.constraint(equalTo: passwordField.centerXAnchor),
-            saveButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: SaveButtonConstant.saveButtonTop),
-            saveButton.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                constant: SaveButtonConstant.saveButtonLeading)
-        ])
+    @objc func saveButtonHandler() {
+        let item: UserModel
+        item = UserModel(name: userName.text ?? .empty, login: loginField.text ?? .empty, password: passwordField.text ?? .empty, photo: userImage.image)
+        delegate?.saveUserModel(with: item)
+        print(item)
     }
 
+    
+    // MARK: - NSLayoutConstraint
+    
+    private func layoutScrollView() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    private func layoutContentView() {
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+        ])
+    }
+    
+    enum MainStackLayoutConstant {
+        static let spacing: CGFloat = 70.0
+        static let topAnchor: CGFloat = 50.0
+        static let leadingAnchor: CGFloat = 40
+        static let trailingAnchor: CGFloat = -40
+        static let bottomAnchor: CGFloat = -50.0
+    }
+    private func layoutMainStackView() {
+        NSLayoutConstraint.activate([
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, 
+                                               constant: MainStackLayoutConstant.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, 
+                                                   constant: MainStackLayoutConstant.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, 
+                                                    constant: MainStackLayoutConstant.trailingAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, 
+                                                  constant: MainStackLayoutConstant.bottomAnchor),
+        ])
+    }
+    
+    private func layoutBottomStackView() {
+        NSLayoutConstraint.activate([
+            bottomStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
+            bottomStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor)
+        ])
+    }
+    
+    private func layoutUserImage() {
+        NSLayoutConstraint.activate([
+            userImage.heightAnchor.constraint(equalToConstant: UserImageLayoutConstant.height),
+            userImage.widthAnchor.constraint(equalTo: userImage.heightAnchor,
+                                             multiplier: UserImageLayoutConstant.width)
+        ])
+    }
+    
+    private func layoutUserName() {
+        NSLayoutConstraint.activate([
+            userName.heightAnchor.constraint(equalToConstant: appearance.userNameLayoutHeight)
+        ])
+    }
+    
+    private func layoutUserLogin() {
+        NSLayoutConstraint.activate([
+            loginField.heightAnchor.constraint(equalToConstant: appearance.userLoginLayoutHeight),
+        ])
+    }
+    
+    private func layoutPassword() {
+        NSLayoutConstraint.activate([
+            passwordField.heightAnchor.constraint(equalToConstant: appearance.userPasswordLayoutHeight)
+        ])
+    }
 }
 
 extension RegistrationViews {
@@ -182,8 +223,16 @@ extension RegistrationViews {
         let cornerRadius = 5.0
         let userNamePlaceholder : String = "Enter_Name".localized
         let saveButtonTitle : String = "Save".localized
+        let spacing: CGFloat = 10.0
+        let userNameLayoutHeight: CGFloat = 44.0
+        let userPasswordLayoutHeight: CGFloat = 44.0
+        let userLoginLayoutHeight: CGFloat = 44
     }
     
+    enum UserImageLayoutConstant {
+        static let height: CGFloat = 120.0
+        static let width: CGFloat = 1.0
+    }
     
     enum TextFieldConstant {
         static let loginPlaceholder : String = "Enter_Login".localized

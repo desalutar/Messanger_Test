@@ -27,7 +27,7 @@ final class RegistrationViewController: UIViewController, RegistrationDelegate {
         view.endEditing(true)
     }
     
-    func saveUser(with item: UserModel) {
+    func saveUserModel(with item: UserModel) {
         navigationController?.popToRootViewController(animated: true)
     }
 }
