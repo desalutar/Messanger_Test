@@ -20,21 +20,18 @@ final class AuthorizationViews: UIView {
     init(item: UserModel? = nil) {
         self.item = item
         super.init(frame: .zero)
-        authorizationScreen()
+        setViewItems()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func authorizationScreen() {
+    private func setViewItems() {
         backgroundColor = ColorsConstants.backgroundView
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(mainStackView)
-//        addSubview(loginField)
-//        addSubview(passwordField)
-//        addSubview(signInButton)
         layoutScrollView()
         layoutContentView()
         layoutMainStackView()
