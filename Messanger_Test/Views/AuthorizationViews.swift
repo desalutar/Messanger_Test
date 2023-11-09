@@ -21,6 +21,7 @@ final class AuthorizationViews: UIView {
         self.item = item
         super.init(frame: .zero)
         setViewItems()
+        hideKeyboard()
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +39,25 @@ final class AuthorizationViews: UIView {
         layoutLoginTextField()
         layoutPasswordTextField()
         layoutSignInButton()
+    }
+    
+    private func hideKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if contentView.frame.origin.y == 0 {
+                contentView.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if contentView.frame.origin.y != 0 {
+            contentView.frame.origin.y = 0
+        }
     }
 
     // MARK: - View Items
