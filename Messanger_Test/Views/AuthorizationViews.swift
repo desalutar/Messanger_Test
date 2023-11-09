@@ -29,16 +29,43 @@ final class AuthorizationViews: UIView {
     
     private func authorizationScreen() {
         backgroundColor = ColorsConstants.backgroundView
-        addSubview(loginField)
-        addSubview(passwordField)
-        addSubview(signInButton)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(mainStackView)
+//        addSubview(loginField)
+//        addSubview(passwordField)
+//        addSubview(signInButton)
+        layoutScrollView()
+        layoutContentView()
+        layoutMainStackView()
         layoutLoginTextField()
         layoutPasswordTextField()
         layoutSignInButton()
     }
 
     // MARK: - View Items
+    private lazy var scrollView : UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
     
+    private let contentView : UIView = {
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    }()
+    
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [loginField, passwordField, signInButton])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.alignment = .center
+        return stackView
+    }()
     
     private lazy var loginField : UITextField = {
         let loginTextField = UITextField()
@@ -82,49 +109,75 @@ final class AuthorizationViews: UIView {
     
     // MARK: - NSLayoutConstraint
 
+    private func layoutScrollView() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    private func layoutContentView() {
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+        ])
+    }
+    
+    enum MainStackConstants {
+        static let mainStackTop: CGFloat = 400.0
+        static let mainStackLeading: CGFloat = 30.0
+        static let mainStackTrailing: CGFloat = -30.0
+        static let mainStackBottom: CGFloat = -30.0
+    }
+    private func layoutMainStackView() {
+        NSLayoutConstraint.activate([
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                               constant: MainStackConstants.mainStackTop),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                   constant: MainStackConstants.mainStackLeading),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                    constant: MainStackConstants.mainStackTrailing),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                                  constant: MainStackConstants.mainStackBottom),
+        ])
+    }
     
     
     enum LoginLayoutConstant {
-        static let loginTextFieldLeading: CGFloat = 40.0
-        static let loginTextFieldTrailing: CGFloat = -40.0
-        static let loginTextFieldHeight: CGFloat = 30.0
-        static let loginTextFieldBottom: CGFloat = -235.0
+        static let loginTextFieldWidth: CGFloat = 280.0
+        static let loginTextFieldHeight: CGFloat = 44.0
     }
     private func layoutLoginTextField() {
         NSLayoutConstraint.activate([
-            loginField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: LoginLayoutConstant.loginTextFieldLeading),
-            loginField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: LoginLayoutConstant.loginTextFieldTrailing),
             loginField.heightAnchor.constraint(equalToConstant: LoginLayoutConstant.loginTextFieldHeight),
-            loginField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: LoginLayoutConstant.loginTextFieldBottom)
+            loginField.widthAnchor.constraint(equalToConstant: LoginLayoutConstant.loginTextFieldWidth)
         ])
     }
     
     enum PasswordLayoutConstant {
-        static let passwordLeading: CGFloat = 40.0
-        static let passwordTrailing: CGFloat = -40.0
-        static let passwordHeight: CGFloat = 30.0
-        static let passwordTop: CGFloat = 10.0
+        static let passwordHeight: CGFloat = 44.0
+        static let passwordWidth: CGFloat = 280
     }
     private func layoutPasswordTextField() {
         NSLayoutConstraint.activate([
-            passwordField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: PasswordLayoutConstant.passwordLeading),
-            passwordField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: PasswordLayoutConstant.passwordTrailing),
             passwordField.heightAnchor.constraint(equalToConstant: PasswordLayoutConstant.passwordHeight),
-            passwordField.centerXAnchor.constraint(equalTo: loginField.centerXAnchor),
-            passwordField.topAnchor.constraint(equalTo: loginField.bottomAnchor,
-                                                   constant: PasswordLayoutConstant.passwordTop)
+            passwordField.widthAnchor.constraint(equalToConstant: PasswordLayoutConstant.passwordWidth)
         ])
     }
     
     enum SignInLayoutConstant {
-        static let signInLeading: CGFloat = 95.0
-        static let signInTop: CGFloat = 10.0
+        static let signInWidth: CGFloat = 280.0
+        static let signInHeight: CGFloat = 44.0
     }
     private func layoutSignInButton() {
         NSLayoutConstraint.activate([
-            signInButton.centerXAnchor.constraint(equalTo: passwordField.centerXAnchor),
-            signInButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: SignInLayoutConstant.signInLeading),
-            signInButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: SignInLayoutConstant.signInTop)
+            signInButton.widthAnchor.constraint(equalToConstant: SignInLayoutConstant.signInWidth),
+            signInButton.heightAnchor.constraint(equalToConstant: SignInLayoutConstant.signInHeight)
         ])
     }
 }
