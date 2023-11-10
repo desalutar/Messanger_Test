@@ -33,6 +33,7 @@ final class AuthorizationViews: UIView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(mainStackView)
+        
         layoutScrollView()
         layoutContentView()
         layoutMainStackView()
@@ -42,8 +43,10 @@ final class AuthorizationViews: UIView {
     }
     
     private func hideKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), 
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), 
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {

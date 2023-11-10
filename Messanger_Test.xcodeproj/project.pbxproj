@@ -71,6 +71,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2311375B2AFD353F00467AC8 /* Supported */ = {
+			isa = PBXGroup;
+			children = (
+				23A1B2C62AF3F8AA0072141A /* Assets.xcassets */,
+			);
+			path = Supported;
+			sourceTree = "<group>";
+		};
 		2359E7C12AF8F01C009067C7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +106,7 @@
 		23A1B2BC2AF3F8A90072141A /* Messanger_Test */ = {
 			isa = PBXGroup;
 			children = (
+				23A1B2BD2AF3F8A90072141A /* AppDelegate.swift */,
 				2359E7C12AF8F01C009067C7 /* Extensions */,
 				23A1B2D12AF3F8E30072141A /* Controllers */,
 				23A1B33F2AF68B930072141A /* Coordinator */,
@@ -105,11 +114,9 @@
 				23A1B2DE2AF3FA1C0072141A /* Localizable */,
 				23A1B2D32AF3F9150072141A /* Model */,
 				23A1B2D22AF3F8ED0072141A /* Views */,
-				23A1B2BD2AF3F8A90072141A /* AppDelegate.swift */,
-				23A1B2C62AF3F8AA0072141A /* Assets.xcassets */,
-				23A1B2C82AF3F8AA0072141A /* LaunchScreen.storyboard */,
-				23A1B2CB2AF3F8AA0072141A /* Info.plist */,
+				2311375B2AFD353F00467AC8 /* Supported */,
 				23A1B3582AF7FBF30072141A /* GoogleService-Info.plist */,
+				23A1B2CB2AF3F8AA0072141A /* Info.plist */,
 			);
 			path = Messanger_Test;
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 				23A1B2D62AF3F9410072141A /* StartViews.swift */,
 				23A1B34F2AF7883D0072141A /* AuthorizationViews.swift */,
 				23A1B3512AF7884A0072141A /* RegistrationViews.swift */,
+				23A1B2C82AF3F8AA0072141A /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
