@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2311375D2AFF13F500467AC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2311375C2AFF13F500467AC8 /* GoogleService-Info.plist */; };
 		23A1B2BE2AF3F8A90072141A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B2BD2AF3F8A90072141A /* AppDelegate.swift */; };
 		23A1B2C72AF3F8AA0072141A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23A1B2C62AF3F8AA0072141A /* Assets.xcassets */; };
 		23A1B2CA2AF3F8AA0072141A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23A1B2C82AF3F8AA0072141A /* LaunchScreen.storyboard */; };
@@ -23,7 +24,6 @@
 		23A1B3522AF7884A0072141A /* RegistrationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3512AF7884A0072141A /* RegistrationViews.swift */; };
 		23A1B3542AF7DDC00072141A /* Extension+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3532AF7DDC00072141A /* Extension+Strings.swift */; };
 		23A1B3572AF7E6FB0072141A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3562AF7E6FB0072141A /* TableViewController.swift */; };
-		23A1B3592AF7FBF30072141A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23A1B3582AF7FBF30072141A /* GoogleService-Info.plist */; };
 		23A1B35C2AF7FD210072141A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 23A1B35B2AF7FD210072141A /* FirebaseAnalytics */; };
 		23A1B35E2AF7FD210072141A /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 23A1B35D2AF7FD210072141A /* FirebaseAnalyticsOnDeviceConversion */; };
 		23A1B3602AF7FD210072141A /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 23A1B35F2AF7FD210072141A /* FirebaseAnalyticsSwift */; };
@@ -32,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2311375C2AFF13F500467AC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23A1B2BA2AF3F8A90072141A /* Messanger_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messanger_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23A1B2BD2AF3F8A90072141A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23A1B2C62AF3F8AA0072141A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,7 +53,6 @@
 		23A1B3512AF7884A0072141A /* RegistrationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViews.swift; sourceTree = "<group>"; };
 		23A1B3532AF7DDC00072141A /* Extension+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Strings.swift"; sourceTree = "<group>"; };
 		23A1B3562AF7E6FB0072141A /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		23A1B3582AF7FBF30072141A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +115,8 @@
 				23A1B2D32AF3F9150072141A /* Model */,
 				23A1B2D22AF3F8ED0072141A /* Views */,
 				2311375B2AFD353F00467AC8 /* Supported */,
-				23A1B3582AF7FBF30072141A /* GoogleService-Info.plist */,
 				23A1B2CB2AF3F8AA0072141A /* Info.plist */,
+				2311375C2AFF13F500467AC8 /* GoogleService-Info.plist */,
 			);
 			path = Messanger_Test;
 			sourceTree = "<group>";
@@ -246,7 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23A1B2CA2AF3F8AA0072141A /* LaunchScreen.storyboard in Resources */,
-				23A1B3592AF7FBF30072141A /* GoogleService-Info.plist in Resources */,
+				2311375D2AFF13F500467AC8 /* GoogleService-Info.plist in Resources */,
 				23A1B2E22AF3FA550072141A /* Localizable.strings in Resources */,
 				23A1B2C72AF3F8AA0072141A /* Assets.xcassets in Resources */,
 			);
