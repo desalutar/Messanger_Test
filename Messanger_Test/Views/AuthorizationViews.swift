@@ -14,7 +14,6 @@ protocol AuthorizationViewsDelegate: AnyObject {
 final class AuthorizationViews: UIView {
     
     private let item : UserModel?
-    private let appearance = Appearance()
     weak var delegate: AuthorizationViewsDelegate?
     
     init(item: UserModel? = nil) {
@@ -93,8 +92,8 @@ final class AuthorizationViews: UIView {
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         loginTextField.placeholder = LocalizedStringsConstant.loginPlaceholder
         loginTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
-        loginTextField.layer.borderWidth = appearance.borderWidth
-        loginTextField.layer.cornerRadius = appearance.cornerRadius
+        loginTextField.layer.borderWidth = Appearance.borderWidth
+        loginTextField.layer.cornerRadius = Appearance.cornerRadius
         loginTextField.textAlignment = .center
         return loginTextField
     }()
@@ -105,8 +104,8 @@ final class AuthorizationViews: UIView {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = LocalizedStringsConstant.passwordPlaceHolder
         passwordTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
-        passwordTextField.layer.borderWidth = appearance.borderWidth
-        passwordTextField.layer.cornerRadius = appearance.cornerRadius
+        passwordTextField.layer.borderWidth = Appearance.borderWidth
+        passwordTextField.layer.cornerRadius = Appearance.cornerRadius
         passwordTextField.textAlignment = .center
         passwordTextField.isSecureTextEntry = true
         return passwordTextField
@@ -118,7 +117,7 @@ final class AuthorizationViews: UIView {
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.setTitle(LocalizedStringsConstant.singInButtonTitle, for: .normal)
         signInButton.backgroundColor = ColorsConstants.signInButtonColor
-        signInButton.layer.cornerRadius = appearance.cornerRadius
+        signInButton.layer.cornerRadius = Appearance.cornerRadius
         signInButton.addTarget(self, action: #selector(signInButtonHandler), for: .touchUpInside)
         return signInButton
     }()
@@ -204,8 +203,8 @@ final class AuthorizationViews: UIView {
 
 extension AuthorizationViews {
     struct Appearance {
-        let borderWidth = 0.5
-        let cornerRadius = 5.0
+        static let borderWidth = 0.5
+        static let cornerRadius = 5.0
     }
     
     enum ColorsConstants {

@@ -14,7 +14,6 @@ protocol RegistrationDelegate: AnyObject {
 final class RegistrationViews: UIView {
 
     private let item: UserModel?
-    private let appearance = Appearance()
     weak var delegate: RegistrationDelegate?
     
     init(item: UserModel? = nil) {
@@ -94,14 +93,14 @@ final class RegistrationViews: UIView {
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomStackView.axis = .vertical
         bottomStackView.distribution = .fill
-        bottomStackView.spacing = appearance.spacing
+        bottomStackView.spacing = Appearance.spacing
         return bottomStackView
     }()
 
     private lazy var userImage : UIImageView = {
         let userImage = UIImageView()
         userImage.translatesAutoresizingMaskIntoConstraints = false
-        userImage.layer.cornerRadius = appearance.userImageCornerRadius
+        userImage.layer.cornerRadius = Appearance.userImageCornerRadius
         userImage.backgroundColor = ColorsConstants.colorRed
         userImage.contentMode = .scaleAspectFill
         userImage.clipsToBounds = true
@@ -112,10 +111,10 @@ final class RegistrationViews: UIView {
         let userName = UITextField()
         userName.backgroundColor = ColorsConstants.colorWhite
         userName.translatesAutoresizingMaskIntoConstraints = false
-        userName.placeholder = appearance.userNamePlaceholder
+        userName.placeholder = Appearance.userNamePlaceholder
         userName.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
-        userName.layer.borderWidth = appearance.borderWidth
-        userName.layer.cornerRadius = appearance.cornerRadius
+        userName.layer.borderWidth = Appearance.borderWidth
+        userName.layer.cornerRadius = Appearance.cornerRadius
         userName.textAlignment = .center
         return userName
     }()
@@ -126,8 +125,8 @@ final class RegistrationViews: UIView {
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         loginTextField.placeholder = TextFieldConstant.loginPlaceholder
         loginTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
-        loginTextField.layer.borderWidth = appearance.borderWidth
-        loginTextField.layer.cornerRadius = appearance.cornerRadius
+        loginTextField.layer.borderWidth = Appearance.borderWidth
+        loginTextField.layer.cornerRadius = Appearance.cornerRadius
         loginTextField.textAlignment = .center
         return loginTextField
     }()
@@ -138,8 +137,8 @@ final class RegistrationViews: UIView {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = TextFieldConstant.passwordPlaceHolder
         passwordTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
-        passwordTextField.layer.borderWidth = appearance.borderWidth
-        passwordTextField.layer.cornerRadius = appearance.cornerRadius
+        passwordTextField.layer.borderWidth = Appearance.borderWidth
+        passwordTextField.layer.cornerRadius = Appearance.cornerRadius
         passwordTextField.textAlignment = .center
         passwordTextField.isSecureTextEntry = true
         return passwordTextField
@@ -148,8 +147,8 @@ final class RegistrationViews: UIView {
     private lazy var saveButton : UIButton = {
         let saveButton = UIButton()
         saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.setTitle(appearance.saveButtonTitle, for: .normal)
-        saveButton.layer.cornerRadius = appearance.cornerRadius
+        saveButton.setTitle(Appearance.saveButtonTitle, for: .normal)
+        saveButton.layer.cornerRadius = Appearance.cornerRadius
         saveButton.backgroundColor = ColorsConstants.saveButtonColor
         saveButton.addTarget(self, action: #selector(saveButtonHandler), for: .touchUpInside)
         return saveButton
@@ -221,34 +220,34 @@ final class RegistrationViews: UIView {
     
     private func layoutUserName() {
         NSLayoutConstraint.activate([
-            userName.heightAnchor.constraint(equalToConstant: appearance.userNameLayoutHeight)
+            userName.heightAnchor.constraint(equalToConstant: Appearance.userNameLayoutHeight)
         ])
     }
     
     private func layoutUserLogin() {
         NSLayoutConstraint.activate([
-            loginField.heightAnchor.constraint(equalToConstant: appearance.userLoginLayoutHeight),
+            loginField.heightAnchor.constraint(equalToConstant: Appearance.userLoginLayoutHeight),
         ])
     }
     
     private func layoutPassword() {
         NSLayoutConstraint.activate([
-            passwordField.heightAnchor.constraint(equalToConstant: appearance.userPasswordLayoutHeight)
+            passwordField.heightAnchor.constraint(equalToConstant: Appearance.userPasswordLayoutHeight)
         ])
     }
 }
 
 extension RegistrationViews {
     struct Appearance {
-        let userImageCornerRadius = 10.0
-        let borderWidth = 0.5
-        let cornerRadius = 5.0
-        let userNamePlaceholder : String = "Enter_Name".localized
-        let saveButtonTitle : String = "Save".localized
-        let spacing: CGFloat = 10.0
-        let userNameLayoutHeight: CGFloat = 44.0
-        let userPasswordLayoutHeight: CGFloat = 44.0
-        let userLoginLayoutHeight: CGFloat = 44
+        static let userImageCornerRadius = 10.0
+        static let borderWidth = 0.5
+        static let cornerRadius = 5.0
+        static let userNamePlaceholder : String = "Enter_Name".localized
+        static let saveButtonTitle : String = "Save".localized
+        static let spacing: CGFloat = 10.0
+        static let userNameLayoutHeight: CGFloat = 44.0
+        static let userPasswordLayoutHeight: CGFloat = 44.0
+        static let userLoginLayoutHeight: CGFloat = 44
     }
     
     enum UserImageLayoutConstant {
