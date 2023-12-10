@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 final class AuthorizationViewController: UIViewController {
     
@@ -15,6 +17,7 @@ final class AuthorizationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = authorizationViews
+        authorizationViews.delegate = self
         hideKeyboard()
     }
     
@@ -25,4 +28,19 @@ final class AuthorizationViewController: UIViewController {
     @objc func tapToClose() {
         view.endEditing(true)
     }
+    
+}
+
+extension AuthorizationViewController: AuthorizationViewsDelegate {
+    func signInAccount() {
+        Auth.auth().signIn(withEmail: authorizationViews.emailField.text!,
+                           password: authorizationViews.passwordField.text!) { (result, error) in
+            if error != nil {
+                print("qwerty")
+            } else {
+                print("Вход успешен")
+            }
+        }
+    }
+
 }

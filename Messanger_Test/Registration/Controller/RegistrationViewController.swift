@@ -28,13 +28,6 @@ final class RegistrationViewController: UIViewController {
     @objc func tapToClose() {
         view.endEditing(true)
     }
-    
-    
-    /* 
-     Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-     
-    }
-     */
 }
 
 extension RegistrationViewController: RegistrationDelegate {

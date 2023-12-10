@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AuthorizationViewsDelegate: AnyObject {
-    func switchToAuthorizationController()
+    func signInAccount()
 }
 
 final class AuthorizationViews: UIView {
@@ -78,7 +78,7 @@ final class AuthorizationViews: UIView {
     }()
     
     private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [loginField, passwordField, signInButton])
+        let stackView = UIStackView(arrangedSubviews: [emailField, passwordField, signInButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -86,19 +86,19 @@ final class AuthorizationViews: UIView {
         return stackView
     }()
     
-    private lazy var loginField : UITextField = {
-        let loginTextField = UITextField()
-        loginTextField.backgroundColor = ColorsConstants.colorWhite
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.placeholder = LocalizedStringsConstant.loginPlaceholder
-        loginTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
-        loginTextField.layer.borderWidth = Appearance.borderWidth
-        loginTextField.layer.cornerRadius = Appearance.cornerRadius
-        loginTextField.textAlignment = .center
-        return loginTextField
+    lazy var emailField : UITextField = {
+        let emailField = UITextField()
+        emailField.backgroundColor = ColorsConstants.colorWhite
+        emailField.translatesAutoresizingMaskIntoConstraints = false
+        emailField.placeholder = LocalizedStringsConstant.loginPlaceholder
+        emailField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
+        emailField.layer.borderWidth = Appearance.borderWidth
+        emailField.layer.cornerRadius = Appearance.cornerRadius
+        emailField.textAlignment = .center
+        return emailField
     }()
     
-    private lazy var passwordField : UITextField = {
+    lazy var passwordField : UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.backgroundColor = ColorsConstants.colorWhite
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -123,7 +123,7 @@ final class AuthorizationViews: UIView {
     }()
     
     @objc func signInButtonHandler() {
-        print("Добавить метод для перехода в TableVIew")
+        delegate?.signInAccount()
     }
     
     // MARK: - NSLayoutConstraint
@@ -173,8 +173,8 @@ final class AuthorizationViews: UIView {
     }
     private func layoutLoginTextField() {
         NSLayoutConstraint.activate([
-            loginField.heightAnchor.constraint(equalToConstant: LoginLayoutConstant.loginTextFieldHeight),
-            loginField.widthAnchor.constraint(equalToConstant: LoginLayoutConstant.loginTextFieldWidth)
+            emailField.heightAnchor.constraint(equalToConstant: LoginLayoutConstant.loginTextFieldHeight),
+            emailField.widthAnchor.constraint(equalToConstant: LoginLayoutConstant.loginTextFieldWidth)
         ])
     }
     
