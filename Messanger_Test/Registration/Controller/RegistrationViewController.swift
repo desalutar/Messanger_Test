@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 final class RegistrationViewController: UIViewController, RegistrationDelegate {
     
@@ -28,6 +29,13 @@ final class RegistrationViewController: UIViewController, RegistrationDelegate {
     }
     
     func saveUserModel(with item: UserModel) {
-        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        coordinator?.pop()
     }
+    
+    /* 
+     Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+     
+    }
+     */
 }

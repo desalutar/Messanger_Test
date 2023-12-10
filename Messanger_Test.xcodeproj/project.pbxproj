@@ -23,7 +23,6 @@
 		23A1B3502AF7883D0072141A /* AuthorizationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B34F2AF7883D0072141A /* AuthorizationViews.swift */; };
 		23A1B3522AF7884A0072141A /* RegistrationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3512AF7884A0072141A /* RegistrationViews.swift */; };
 		23A1B3542AF7DDC00072141A /* Extension+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3532AF7DDC00072141A /* Extension+Strings.swift */; };
-		23A1B3572AF7E6FB0072141A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A1B3562AF7E6FB0072141A /* TableViewController.swift */; };
 		23A1B35C2AF7FD210072141A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 23A1B35B2AF7FD210072141A /* FirebaseAnalytics */; };
 		23A1B35E2AF7FD210072141A /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 23A1B35D2AF7FD210072141A /* FirebaseAnalyticsOnDeviceConversion */; };
 		23A1B3602AF7FD210072141A /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 23A1B35F2AF7FD210072141A /* FirebaseAnalyticsSwift */; };
@@ -52,7 +51,6 @@
 		23A1B34F2AF7883D0072141A /* AuthorizationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViews.swift; sourceTree = "<group>"; };
 		23A1B3512AF7884A0072141A /* RegistrationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViews.swift; sourceTree = "<group>"; };
 		23A1B3532AF7DDC00072141A /* Extension+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Strings.swift"; sourceTree = "<group>"; };
-		23A1B3562AF7E6FB0072141A /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,13 +104,14 @@
 		23A1B2BC2AF3F8A90072141A /* Messanger_Test */ = {
 			isa = PBXGroup;
 			children = (
+				23A1B2D12AF3F8E30072141A /* StartScreen */,
+				23CF2D2E2B25EB37006BB79F /* Autorization */,
+				23CF2D292B24F83F006BB79F /* Registration */,
 				2359E7C12AF8F01C009067C7 /* Extensions */,
-				23A1B2D12AF3F8E30072141A /* Controllers */,
 				23A1B33F2AF68B930072141A /* Coordinator */,
-				23A1B3422AF68BBC0072141A /* Protocols */,
 				23A1B2DE2AF3FA1C0072141A /* Localizable */,
 				23A1B2D32AF3F9150072141A /* Model */,
-				23A1B2D22AF3F8ED0072141A /* Views */,
+				23A1B2D22AF3F8ED0072141A /* LaunchScreen */,
 				2311375B2AFD353F00467AC8 /* Supported */,
 				23A1B2BD2AF3F8A90072141A /* AppDelegate.swift */,
 				23A1B2CB2AF3F8AA0072141A /* Info.plist */,
@@ -121,26 +120,21 @@
 			path = Messanger_Test;
 			sourceTree = "<group>";
 		};
-		23A1B2D12AF3F8E30072141A /* Controllers */ = {
+		23A1B2D12AF3F8E30072141A /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
-				23A1B2DA2AF3F9EE0072141A /* AuthorizationViewController.swift */,
-				23A1B2DC2AF3FA020072141A /* RegistrationViewController.swift */,
-				23A1B2D82AF3F9900072141A /* StartScreenController.swift */,
-				23A1B3562AF7E6FB0072141A /* TableViewController.swift */,
+				23CF2D322B25EB8E006BB79F /* Controller */,
+				23CF2D332B25EBA1006BB79F /* View */,
 			);
-			path = Controllers;
+			path = StartScreen;
 			sourceTree = "<group>";
 		};
-		23A1B2D22AF3F8ED0072141A /* Views */ = {
+		23A1B2D22AF3F8ED0072141A /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
-				23A1B2D62AF3F9410072141A /* StartViews.swift */,
-				23A1B34F2AF7883D0072141A /* AuthorizationViews.swift */,
-				23A1B3512AF7884A0072141A /* RegistrationViews.swift */,
 				23A1B2C82AF3F8AA0072141A /* LaunchScreen.storyboard */,
 			);
-			path = Views;
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		23A1B2D32AF3F9150072141A /* Model */ = {
@@ -164,16 +158,75 @@
 			isa = PBXGroup;
 			children = (
 				23A1B3402AF68BA60072141A /* AppCoordinator.swift */,
+				23A1B3432AF68BD60072141A /* CoordinatorProtocol.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		23A1B3422AF68BBC0072141A /* Protocols */ = {
+		23CF2D292B24F83F006BB79F /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				23A1B3432AF68BD60072141A /* CoordinatorProtocol.swift */,
+				23CF2D2B2B24F86B006BB79F /* Controller */,
+				23CF2D2A2B24F857006BB79F /* View */,
 			);
-			path = Protocols;
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		23CF2D2A2B24F857006BB79F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23A1B3512AF7884A0072141A /* RegistrationViews.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		23CF2D2B2B24F86B006BB79F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				23A1B2DC2AF3FA020072141A /* RegistrationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		23CF2D2E2B25EB37006BB79F /* Autorization */ = {
+			isa = PBXGroup;
+			children = (
+				23CF2D2F2B25EB55006BB79F /* Controller */,
+				23CF2D302B25EB62006BB79F /* View */,
+			);
+			path = Autorization;
+			sourceTree = "<group>";
+		};
+		23CF2D2F2B25EB55006BB79F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				23A1B2DA2AF3F9EE0072141A /* AuthorizationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		23CF2D302B25EB62006BB79F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23A1B34F2AF7883D0072141A /* AuthorizationViews.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		23CF2D322B25EB8E006BB79F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				23A1B2D82AF3F9900072141A /* StartScreenController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		23CF2D332B25EBA1006BB79F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23A1B2D62AF3F9410072141A /* StartViews.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,7 +314,6 @@
 			files = (
 				23A1B2DB2AF3F9EE0072141A /* AuthorizationViewController.swift in Sources */,
 				23A1B2DD2AF3FA020072141A /* RegistrationViewController.swift in Sources */,
-				23A1B3572AF7E6FB0072141A /* TableViewController.swift in Sources */,
 				23A1B3442AF68BD60072141A /* CoordinatorProtocol.swift in Sources */,
 				23A1B2E72AF3FB510072141A /* LocalizationOfStrings.swift in Sources */,
 				23A1B2BE2AF3F8A90072141A /* AppDelegate.swift in Sources */,

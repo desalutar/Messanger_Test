@@ -33,4 +33,8 @@ class AppCoordinator: CoordinatorProtocol {
         navigationController.pushViewController(authorizationVC, animated: true)
     }
     
+    func pop() {
+        navigationController.popViewController(animated: true)
+    }
+    
 }
