@@ -9,6 +9,7 @@ import UIKit
 
 protocol RegistrationDelegate: AnyObject {
     func saveUserModel(with item: UserModel)
+    func checkValid()
 }
 
 final class RegistrationViews: UIView {
@@ -89,7 +90,7 @@ final class RegistrationViews: UIView {
     }()
     
     private lazy var bottomStackView: UIStackView = {
-        let bottomStackView = UIStackView(arrangedSubviews: [loginField, userName, passwordField, saveButton])
+        let bottomStackView = UIStackView(arrangedSubviews: [emailField, userName, passwordField, saveButton])
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomStackView.axis = .vertical
         bottomStackView.distribution = .fill
@@ -107,7 +108,7 @@ final class RegistrationViews: UIView {
         return userImage
     }()
     
-    private lazy var userName : UITextField = {
+    lazy var userName : UITextField = {
         let userName = UITextField()
         userName.backgroundColor = ColorsConstants.colorWhite
         userName.translatesAutoresizingMaskIntoConstraints = false
@@ -119,19 +120,19 @@ final class RegistrationViews: UIView {
         return userName
     }()
     
-    private lazy var loginField : UITextField = {
-        let loginTextField = UITextField()
-        loginTextField.backgroundColor = ColorsConstants.colorWhite
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.placeholder = TextFieldConstant.loginPlaceholder
-        loginTextField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
-        loginTextField.layer.borderWidth = Appearance.borderWidth
-        loginTextField.layer.cornerRadius = Appearance.cornerRadius
-        loginTextField.textAlignment = .center
-        return loginTextField
+    lazy var emailField : UITextField = {
+        let emailField = UITextField()
+        emailField.backgroundColor = ColorsConstants.colorWhite
+        emailField.translatesAutoresizingMaskIntoConstraints = false
+        emailField.placeholder = TextFieldConstant.loginPlaceholder
+        emailField.layer.borderColor = ColorsConstants.textFieldLayerBorderColor.cgColor
+        emailField.layer.borderWidth = Appearance.borderWidth
+        emailField.layer.cornerRadius = Appearance.cornerRadius
+        emailField.textAlignment = .center
+        return emailField
     }()
     
-    private lazy var passwordField : UITextField = {
+    lazy var passwordField : UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.backgroundColor = ColorsConstants.colorWhite
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -156,8 +157,12 @@ final class RegistrationViews: UIView {
     
     @objc func saveButtonHandler() {
         let item: UserModel
-        item = UserModel(name: userName.text ?? .empty, login: loginField.text ?? .empty, password: passwordField.text ?? .empty, photo: userImage.image)
+        item = UserModel(name: userName.text ?? .empty, login: emailField.text ?? .empty, password: passwordField.text ?? .empty, photo: userImage.image)
         delegate?.saveUserModel(with: item)
+//        if (userName.text != nil), (emailField.text != nil), passwordField.text != "" {
+            delegate?.checkValid()
+//        }
+        
         print(item)
     }
 
@@ -226,7 +231,7 @@ final class RegistrationViews: UIView {
     
     private func layoutUserLogin() {
         NSLayoutConstraint.activate([
-            loginField.heightAnchor.constraint(equalToConstant: Appearance.userLoginLayoutHeight),
+            emailField.heightAnchor.constraint(equalToConstant: Appearance.userLoginLayoutHeight),
         ])
     }
     
@@ -256,7 +261,7 @@ extension RegistrationViews {
     }
     
     enum TextFieldConstant {
-        static let loginPlaceholder : String = "Enter_Login".localized
+        static let loginPlaceholder : String = "Enter_Email".localized
         static let passwordPlaceHolder : String = "Enter_Password".localized
     }
     

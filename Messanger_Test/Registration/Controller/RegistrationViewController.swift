@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
-final class RegistrationViewController: UIViewController, RegistrationDelegate {
+final class RegistrationViewController: UIViewController {
     
     weak var coordinator: AppCoordinator?
     private let registrationViews = RegistrationViews()
@@ -28,10 +29,6 @@ final class RegistrationViewController: UIViewController, RegistrationDelegate {
         view.endEditing(true)
     }
     
-    func saveUserModel(with item: UserModel) {
-//        navigationController?.popViewController(animated: true)
-        coordinator?.pop()
-    }
     
     /* 
      Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -39,3 +36,31 @@ final class RegistrationViewController: UIViewController, RegistrationDelegate {
     }
      */
 }
+
+extension RegistrationViewController: RegistrationDelegate {
+    func saveUserModel(with item: UserModel) {
+        coordinator?.pop()
+    }
+    
+    func checkValid() {
+        Auth.auth().createUser(withEmail: registrationViews.emailField.text!, 
+                               password: registrationViews.passwordField.text!) { result, error in
+//            if error == nil {
+//                print("ERROR!!!")
+//            } else {
+                let db = Firestore.firestore()
+                db.collection("users").addDocument(data: [
+                    "email": self.registrationViews.emailField.text!,
+                    "name": self.registrationViews.userName.text!,
+                    "password": self.registrationViews.passwordField.text!,
+                    "uid": result!.user.uid
+                ]) { (error) in
+                    if error != nil {
+                        print("error saving user in database")
+                    }
+                }
+                print("Jump to the next screen!")
+            }
+        }
+    }
+//}
