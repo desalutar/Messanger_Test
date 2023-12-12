@@ -154,7 +154,7 @@ final class RegistrationViews: UIView {
         errorLabel.textColor = .red
         errorLabel.textAlignment = .center
         errorLabel.isHidden = true
-        errorLabel.text = "Some Error"
+        errorLabel.text = Appearance.errorFieldText
         return errorLabel
     }()
     
@@ -169,8 +169,80 @@ final class RegistrationViews: UIView {
     }()
     
     @objc func saveButtonHandler() {
-        delegate?.registrationUser(with: emailField.text!, password: passwordField.text!, name: userName.text!)
+        if validationField()  {
+            errorLabel.isHidden = true
+            delegate?.registrationUser(with: emailField.text!, password: passwordField.text!, name: userName.text!)
+        } else {
+            errorLabel.isHidden = false
+        }
     }
+}
+
+extension RegistrationViews {
+    
+    func validationField() -> Bool {
+        let isEmailAddressValid = isValidEmailAddress(emailAddressString: emailField.text ?? .empty)
+        let isValidUserName = isValidUserName(userName: userName.text ?? .empty)
+        let isValidUserPassword = isValidPassword(passwordString: passwordField.text ?? .empty)
+        
+        if isEmailAddressValid && isValidUserName && isValidUserPassword {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func isValidEmailAddress(emailAddressString: String) -> Bool {
+        var returnValue = true
+        let emailRegex = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: emailRegex)
+            let nsString = emailAddressString as NSString
+            let results = regex.matches(in: emailAddressString, range: NSRange(location: 0, length: nsString.length))
+            if results.count == 0 { returnValue = false }
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+        
+        return  returnValue
+    }
+    
+    func isValidUserName(userName: String) -> Bool {
+        var returnValue = true
+        let nameRegex = "^[a-zA-Z_]{4,13}$"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: nameRegex)
+            let nsString = userName as NSString
+            let results = regex.matches(in: userName, range: NSRange(location: 0, length: nsString.length))
+            if results.count == 0 { returnValue = false }
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+        
+        return returnValue
+    }
+    
+    func isValidPassword(passwordString: String) -> Bool {
+        var resultValue = true
+        let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        
+        do {
+            let regex = try NSRegularExpression(pattern: passwordRegex)
+            let nsString = passwordString as NSString
+            let results = regex.matches(in: passwordString, range: NSRange(location: 0, length: nsString.length))
+            if results.count == 0 { resultValue = false}
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            resultValue = false
+        }
+        
+        return resultValue
+    }
+    
 }
 
 extension RegistrationViews {
@@ -254,7 +326,6 @@ extension RegistrationViews {
         ])
     }
 }
-
 extension RegistrationViews {
     struct Appearance {
         static let userImageCornerRadius = 10.0
@@ -266,6 +337,7 @@ extension RegistrationViews {
         static let userNameLayoutHeight: CGFloat = 44.0
         static let userPasswordLayoutHeight: CGFloat = 44.0
         static let userLoginLayoutHeight: CGFloat = 44
+        static let errorFieldText: String = "Check the fields".localized
     }
     
     enum UserImageLayoutConstant {
