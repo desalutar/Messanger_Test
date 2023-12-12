@@ -31,21 +31,17 @@ final class RegistrationViewController: UIViewController {
 }
 
 extension RegistrationViewController: RegistrationDelegate {
-    func saveUserModel(with item: UserModel) {
-        coordinator?.pop()
-    }
-    
-    func checkValid() {
-        Auth.auth().createUser(withEmail: registrationViews.emailField.text!, 
-                               password: registrationViews.passwordField.text!) { result, error in
-//            if error == nil {
-//                print("ERROR!!!")
-//            } else {
+    func registrationUser(with email: String, password: String, name: String) {
+        Auth.auth().createUser(withEmail: email,
+                               password: password) { result, error in
+            if error != nil {
+                print("ERROR!!!")
+            } else {
                 let db = Firestore.firestore()
                 db.collection("users").addDocument(data: [
-                    "email": self.registrationViews.emailField.text!,
-                    "name": self.registrationViews.userName.text!,
-                    "password": self.registrationViews.passwordField.text!,
+                    "email": email,
+                    "name": name,
+                    "password": password,
                     "uid": result!.user.uid
                 ]) { (error) in
                     if error != nil {
@@ -56,4 +52,8 @@ extension RegistrationViewController: RegistrationDelegate {
             }
         }
     }
-//}
+    
+    func saveUserModel(with item: UserModel) {
+        coordinator?.pop()
+    }
+}

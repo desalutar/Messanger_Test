@@ -217,7 +217,7 @@ extension AuthorizationViews {
     enum LocalizedStringsConstant {
         static let passwordPlaceHolder : String = "Enter_Password".localized
         static let singInButtonTitle : String = "Enter".localized
-        static let loginPlaceholder : String = "Enter_Login".localized
+        static let loginPlaceholder : String = "Enter_Email".localized
         static let registrationScreenButtonTitle: String = "Sign_In".localized
     }
 }

@@ -9,7 +9,8 @@ import UIKit
 
 protocol RegistrationDelegate: AnyObject {
     func saveUserModel(with item: UserModel)
-    func checkValid()
+    func registrationUser(with email: String, password: String, name: String)
+    
 }
 
 final class RegistrationViews: UIView {
@@ -41,6 +42,7 @@ final class RegistrationViews: UIView {
         layoutUserImage()
         layoutUserLogin()
         layoutUserName()
+        layoutErrorLabel()
         layoutPassword()
     }
     
@@ -90,7 +92,8 @@ final class RegistrationViews: UIView {
     }()
     
     private lazy var bottomStackView: UIStackView = {
-        let bottomStackView = UIStackView(arrangedSubviews: [emailField, userName, passwordField, saveButton])
+        let bottomStackView = UIStackView(arrangedSubviews: [emailField, userName, 
+                                                             passwordField, errorLabel, saveButton])
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomStackView.axis = .vertical
         bottomStackView.distribution = .fill
@@ -108,7 +111,7 @@ final class RegistrationViews: UIView {
         return userImage
     }()
     
-    lazy var userName : UITextField = {
+    private lazy var userName : UITextField = {
         let userName = UITextField()
         userName.backgroundColor = ColorsConstants.colorWhite
         userName.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +123,7 @@ final class RegistrationViews: UIView {
         return userName
     }()
     
-    lazy var emailField : UITextField = {
+    private lazy var emailField : UITextField = {
         let emailField = UITextField()
         emailField.backgroundColor = ColorsConstants.colorWhite
         emailField.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +135,7 @@ final class RegistrationViews: UIView {
         return emailField
     }()
     
-    lazy var passwordField : UITextField = {
+    private lazy var passwordField : UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.backgroundColor = ColorsConstants.colorWhite
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -143,6 +146,16 @@ final class RegistrationViews: UIView {
         passwordTextField.textAlignment = .center
         passwordTextField.isSecureTextEntry = true
         return passwordTextField
+    }()
+    
+    private lazy var errorLabel : UILabel = {
+        let errorLabel = UILabel()
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.textColor = .red
+        errorLabel.textAlignment = .center
+        errorLabel.isHidden = true
+        errorLabel.text = "Some Error"
+        return errorLabel
     }()
     
     private lazy var saveButton : UIButton = {
@@ -157,13 +170,11 @@ final class RegistrationViews: UIView {
     
     @objc func saveButtonHandler() {
         let item: UserModel
-        item = UserModel(name: userName.text ?? .empty, login: emailField.text ?? .empty, password: passwordField.text ?? .empty, photo: userImage.image)
-        delegate?.saveUserModel(with: item)
-//        if (userName.text != nil), (emailField.text != nil), passwordField.text != "" {
-            delegate?.checkValid()
-//        }
+        item = UserModel(name: userName.text ?? .empty, login: emailField.text ?? .empty, 
+                         password: passwordField.text ?? .empty, photo: userImage.image)
         
-        print(item)
+        delegate?.saveUserModel(with: item)
+        delegate?.registrationUser(with: emailField.text!, password: passwordField.text!, name: userName.text!)
     }
 
     
@@ -232,6 +243,12 @@ final class RegistrationViews: UIView {
     private func layoutUserLogin() {
         NSLayoutConstraint.activate([
             emailField.heightAnchor.constraint(equalToConstant: Appearance.userLoginLayoutHeight),
+        ])
+    }
+    
+    private func layoutErrorLabel() {
+        NSLayoutConstraint.activate([
+            errorLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
