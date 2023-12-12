@@ -169,15 +169,11 @@ final class RegistrationViews: UIView {
     }()
     
     @objc func saveButtonHandler() {
-        let item: UserModel
-        item = UserModel(name: userName.text ?? .empty, login: emailField.text ?? .empty, 
-                         password: passwordField.text ?? .empty, photo: userImage.image)
-        
-        delegate?.saveUserModel(with: item)
         delegate?.registrationUser(with: emailField.text!, password: passwordField.text!, name: userName.text!)
     }
+}
 
-    
+extension RegistrationViews {
     // MARK: - NSLayoutConstraint
     
     private func layoutScrollView() {
@@ -208,13 +204,13 @@ final class RegistrationViews: UIView {
     }
     private func layoutMainStackView() {
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, 
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor,
                                                constant: MainStackLayoutConstant.topAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, 
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
                                                    constant: MainStackLayoutConstant.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, 
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
                                                     constant: MainStackLayoutConstant.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, 
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
                                                   constant: MainStackLayoutConstant.bottomAnchor),
         ])
     }

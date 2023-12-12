@@ -56,4 +56,5 @@ extension RegistrationViewController: RegistrationDelegate {
     func saveUserModel(with item: UserModel) {
         coordinator?.pop()
     }
+    
 }
