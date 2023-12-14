@@ -48,7 +48,6 @@ extension RegistrationViewController: RegistrationDelegate {
                         print("error saving user in database")
                     }
                 }
-                self.coordinator?.pop()
             }
         }
     }

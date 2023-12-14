@@ -16,6 +16,7 @@ final class RegistrationViews: UIView {
 
     private let item: UserModel?
     weak var delegate: RegistrationDelegate?
+    weak var coordinator: AppCoordinator?
     
     init(item: UserModel? = nil) {
         self.item = item
@@ -174,6 +175,7 @@ final class RegistrationViews: UIView {
             delegate?.registrationUser(with: emailField.text!,
                                        password: passwordField.text!,
                                        name: userName.text!)
+            coordinator?.pop()
         } else {
             errorLabel.isHidden = false
         }
