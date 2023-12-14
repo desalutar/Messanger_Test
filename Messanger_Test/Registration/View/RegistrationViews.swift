@@ -154,6 +154,7 @@ final class RegistrationViews: UIView {
         errorLabel.textColor = .red
         errorLabel.textAlignment = .center
         errorLabel.isHidden = true
+        errorLabel.font = UIFont.systemFont(ofSize: Appearance.errorTextSize)
         errorLabel.text = Appearance.errorFieldText
         return errorLabel
     }()
@@ -336,8 +337,9 @@ extension RegistrationViews {
         static let spacing: CGFloat = 10.0
         static let userNameLayoutHeight: CGFloat = 44.0
         static let userPasswordLayoutHeight: CGFloat = 44.0
-        static let userLoginLayoutHeight: CGFloat = 44
-        static let errorFieldText: String = "Check the fields".localized
+        static let userLoginLayoutHeight: CGFloat = 44.0
+        static let errorTextSize: CGFloat = 20.0
+        static let errorFieldText: String = "Сheck_the_entered_data".localized
     }
     
     enum UserImageLayoutConstant {
