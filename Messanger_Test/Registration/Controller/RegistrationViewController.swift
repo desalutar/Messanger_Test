@@ -33,7 +33,7 @@ final class RegistrationViewController: UIViewController {
 extension RegistrationViewController: RegistrationDelegate {
     func registrationUser(with email: String, password: String, name: String) {
         Auth.auth().createUser(withEmail: email,
-                               password: password) { result, error in
+                               password: password) {result, error in
             if error != nil {
                 print("ERROR!!!")
             } else {
@@ -42,19 +42,15 @@ extension RegistrationViewController: RegistrationDelegate {
                     "email": email,
                     "name": name,
                     "password": password,
-                    "uid": result!.user.uid
+                    "uid": result!.user.uid,
                 ]) { (error) in
                     if error != nil {
                         print("error saving user in database")
                     }
                 }
-                print("Jump to the next screen!")
+                self.coordinator?.pop()
             }
         }
-    }
-    
-    func saveUserModel(with item: UserModel) {
-        coordinator?.pop()
     }
     
 }

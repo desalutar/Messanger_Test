@@ -8,7 +8,6 @@
 import UIKit
 
 protocol RegistrationDelegate: AnyObject {
-    func saveUserModel(with item: UserModel)
     func registrationUser(with email: String, password: String, name: String)
     
 }
@@ -172,7 +171,9 @@ final class RegistrationViews: UIView {
     @objc func saveButtonHandler() {
         if validationField()  {
             errorLabel.isHidden = true
-            delegate?.registrationUser(with: emailField.text!, password: passwordField.text!, name: userName.text!)
+            delegate?.registrationUser(with: emailField.text!,
+                                       password: passwordField.text!,
+                                       name: userName.text!)
         } else {
             errorLabel.isHidden = false
         }

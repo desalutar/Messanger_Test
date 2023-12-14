@@ -36,9 +36,9 @@ extension AuthorizationViewController: AuthorizationViewsDelegate {
         Auth.auth().signIn(withEmail: authorizationViews.emailField.text!,
                            password: authorizationViews.passwordField.text!) { (result, error) in
             if error != nil {
-                print("qwerty")
+                print("There is no account with such data.")
             } else {
-                print("Вход успешен")
+                self.coordinator?.showChatsController()
             }
         }
     }
