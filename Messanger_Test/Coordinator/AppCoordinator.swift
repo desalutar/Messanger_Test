@@ -33,4 +33,14 @@ class AppCoordinator: CoordinatorProtocol {
         navigationController.pushViewController(authorizationVC, animated: true)
     }
     
+    func showChatsController() {
+        let chatsVC = ChatsTableViewController()
+        chatsVC.coordinator = self
+        navigationController.pushViewController(chatsVC, animated: true)
+    }
+    
+    func pop() {
+        navigationController.popViewController(animated: true)
+    }
+    
 }

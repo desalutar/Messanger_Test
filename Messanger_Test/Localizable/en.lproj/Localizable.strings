@@ -5,12 +5,12 @@
   Created by Ишхан Багратуни on 02.11.23.
   
 */
-"Enter_Login" = "Enter Login";
-"Enter_Password" = "Enter_Password";
+"Enter_Email" = "Enter Email";
+"Enter_Password" = "Enter password";
 "Enter" = "Enter";
 "Enter_Name" = "Enter name";
 "Save" = "Save";
 "Registration" = "Registration";
 "Sign_In" = "Sign in";
-
+"Сheck_the_entered_data" = "Сheck the entered data ";
 

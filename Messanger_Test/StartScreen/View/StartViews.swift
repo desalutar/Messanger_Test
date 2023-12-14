@@ -16,10 +16,9 @@ class StartScreenViews : UIView {
     
     weak var delegate: StartScreenDelegate?
     
-    private let item : Model?
-    private let appearance = Appearance()
+    private let item : UserModel?
     
-    init(item: Model? = nil) {
+    init(item: UserModel? = nil) {
         self.item = item
         super.init(frame: .zero)
         startScreen()
@@ -45,7 +44,7 @@ class StartScreenViews : UIView {
         let registrationButton = UIButton()
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
         registrationButton.setTitle(LocalizedStringsConstant.authorizationScreenButtonTitle, for: .normal)
-        registrationButton.layer.cornerRadius = appearance.cornerRadius
+        registrationButton.layer.cornerRadius = Appearance.cornerRadius
         registrationButton.backgroundColor = ColorsConstants.authorizationBackgroundColor
         registrationButton.addTarget(self, action: #selector(registrationHandler),
                                      for: .touchUpInside)
@@ -62,7 +61,7 @@ class StartScreenViews : UIView {
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.setTitle(LocalizedStringsConstant.registrationScreenButtonTitle, for: .normal)
         signInButton.backgroundColor = ColorsConstants.registrationBackgroundColor
-        signInButton.layer.cornerRadius = appearance.cornerRadius
+        signInButton.layer.cornerRadius = Appearance.cornerRadius
         signInButton.addTarget(self, action: #selector(signInHandler), for: .touchUpInside)
         return signInButton
     }()
@@ -112,11 +111,11 @@ class StartScreenViews : UIView {
 
 private extension StartScreenViews {
     struct Appearance {
-        let cornerRadius = 5.0
-        let borderWidth = 0.5
+        static let cornerRadius = 5.0
+        static let borderWidth = 0.5
 
-        let userImageCornerRadius = 50.0
-        let saveButtonLeading = 100.0
+        static let userImageCornerRadius = 50.0
+        static let saveButtonLeading = 100.0
     }
     
     enum LocalizedStringsConstant {
