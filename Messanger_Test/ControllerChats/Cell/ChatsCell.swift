@@ -31,7 +31,7 @@ class ChatsCell: UITableViewCell {
         layer.shadowColor = UIColor.black.cgColor
         
         contentView.backgroundColor = UIColor(
-            cgColor: CGColor(red: 110/256, green: 132/256, blue: 126/256, alpha: 1))
+            cgColor: CGColor(red: 90/256, green: 111/256, blue: 77/256, alpha: 1))
         contentView.layer.cornerRadius = 20
         contentMode = .center
     }
@@ -48,6 +48,8 @@ class ChatsCell: UITableViewCell {
         let userNameLabel = UILabel()
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.text = "User Name"
+        userNameLabel.textColor = UIColor(
+            cgColor: CGColor(red: 256/256, green: 256/256, blue: 256/256, alpha: 1))
         return userNameLabel
     }()
     

@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator?.start()
          
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navigationController /*chatVC*/
+        window?.rootViewController = /*navigationController*/ chatVC
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
         return true
