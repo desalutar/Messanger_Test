@@ -12,17 +12,31 @@ class ChatsTableViewController: UITableViewController {
     weak var coordinator: AppCoordinator?
     var appearance = Appearance()
     
-    var testCell = ["123"]
+    var testCell = ["123", "321"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView = UITableView(frame: .zero, style: .grouped)
 //        self.navigationItem.hidesBackButton = true
-        view.backgroundColor = appearance.backgroundColor
+        view.backgroundColor = Appearance.backgroundColor
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ChatsCell.self, forCellReuseIdentifier: "Cell")
     }
+    
 
-    // MARK: - Table view data source
+}
+
+extension ChatsTableViewController {
+                                    // MARK: - Cells Settings
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ChatsCell
+        
+        return cell
+    }
+}
+
+extension ChatsTableViewController {
+                                    // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         testCell.count
     }
@@ -31,42 +45,16 @@ class ChatsTableViewController: UITableViewController {
         return 1
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
 }
+
 
 extension ChatsTableViewController {
     struct Appearance {
-        var backgroundColor = UIColor(
+        static let  backgroundColor = UIColor(
             cgColor: CGColor(red: 110/256, green: 132/256, blue: 126/256, alpha: 1))
-        
     }
-}
-
-extension ChatsTableViewController {
-                                                // MARK: - Cells Settings
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ChatsCell
-        cell.textLabel?.text = "Hello BOSS"
-        return cell
-    }
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layer.masksToBounds = true
-        let radius = cell.contentView.layer.cornerRadius
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
-    }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height: CGFloat = CGFloat()
-        
-        if indexPath.row == 0 {
-            height = 80
-        } else if indexPath.row == 1 {
-            height = self.view.frame.size.height - 44 - 64
-            print(height)
-        }
-        return height
-    }
-}
-
-extension ChatsTableViewController {
-    
 }
