@@ -39,7 +39,6 @@ final class RegistrationViews: UIView {
         layoutContentView()
         layoutMainStackView()
         layoutBottomStackView()
-        layoutUserImage()
         layoutUserLogin()
         layoutUserName()
         layoutErrorLabel()
@@ -83,7 +82,7 @@ final class RegistrationViews: UIView {
     }()
     
     private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [userImage, bottomStackView])
+        let stackView = UIStackView(arrangedSubviews: [bottomStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = MainStackLayoutConstant.spacing
@@ -92,23 +91,13 @@ final class RegistrationViews: UIView {
     }()
     
     private lazy var bottomStackView: UIStackView = {
-        let bottomStackView = UIStackView(arrangedSubviews: [emailField, userName, 
+        let bottomStackView = UIStackView(arrangedSubviews: [emailField, userName,
                                                              passwordField, errorLabel, saveButton])
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomStackView.axis = .vertical
         bottomStackView.distribution = .fill
         bottomStackView.spacing = Appearance.spacing
         return bottomStackView
-    }()
-
-    private lazy var userImage : UIImageView = {
-        let userImage = UIImageView()
-        userImage.translatesAutoresizingMaskIntoConstraints = false
-        userImage.layer.cornerRadius = Appearance.userImageCornerRadius
-        userImage.backgroundColor = ColorsConstants.colorRed
-        userImage.contentMode = .scaleAspectFill
-        userImage.clipsToBounds = true
-        return userImage
     }()
     
     private lazy var userName : UITextField = {
@@ -273,7 +262,7 @@ extension RegistrationViews {
     
     enum MainStackLayoutConstant {
         static let spacing: CGFloat = 70.0
-        static let topAnchor: CGFloat = 50.0
+        static let topAnchor: CGFloat = 250.0
         static let leadingAnchor: CGFloat = 40
         static let trailingAnchor: CGFloat = -40
         static let bottomAnchor: CGFloat = -50.0
@@ -295,14 +284,6 @@ extension RegistrationViews {
         NSLayoutConstraint.activate([
             bottomStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             bottomStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor)
-        ])
-    }
-    
-    private func layoutUserImage() {
-        NSLayoutConstraint.activate([
-            userImage.heightAnchor.constraint(equalToConstant: UserImageLayoutConstant.height),
-            userImage.widthAnchor.constraint(equalTo: userImage.heightAnchor,
-                                             multiplier: UserImageLayoutConstant.width)
         ])
     }
     
