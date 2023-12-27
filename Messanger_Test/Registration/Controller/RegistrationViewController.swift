@@ -38,7 +38,7 @@ extension RegistrationViewController: RegistrationDelegate {
                 print("ERROR!!!")
             } else {
                 let db = Firestore.firestore()
-                db.collection("users").addDocument(data: [
+                db.collection("Users").addDocument(data: [
                     "email": email,
                     "name": name,
                     "password": password,
