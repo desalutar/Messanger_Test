@@ -135,7 +135,7 @@ extension ChatsTableViewController {
             textView.heightAnchor.constraint(  equalToConstant: 50),
             textView.leadingAnchor.constraint( equalTo: view.leadingAnchor,  constant: 10.0),
             textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80.0),
-            textView.bottomAnchor.constraint(  equalTo: view.bottomAnchor),
+            textView.bottomAnchor.constraint(  equalTo: view.bottomAnchor, constant: -25),
             
         ])
     }

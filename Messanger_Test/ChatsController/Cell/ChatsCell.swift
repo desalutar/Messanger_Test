@@ -14,8 +14,7 @@ class TableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-//        backgroundColor = UIColor(red: 25/256, green: 25/256, blue: 27/256, alpha: 1.0)
-        backgroundColor = .red
+        backgroundColor = UIColor(red: 25/256, green: 25/256, blue: 27/256, alpha: 1.0)
         contentView.addSubview(userTextLabel)
         layoutUserTextLabel()
     }
@@ -28,7 +27,6 @@ class TableViewCell: UITableViewCell {
         userTextLabel.textColor = UIColor(red: 136/255, green: 249/255, blue: 57/255, alpha: 1.0)
         let fontSize = userTextLabel.font.pointSize
         userTextLabel.font = UIFont(name: "Verdana", size: fontSize)
-//        userTextLabel.textAlignment = .right
         userTextLabel.numberOfLines = 0
         userTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return userTextLabel
